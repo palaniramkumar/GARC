@@ -1,4 +1,4 @@
-@import url("//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
+@import url("/css.css"");
 /*!
  * bootswatch v3.2.0
  * Homepage: http://bootswatch.com
@@ -4081,8 +4081,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #222222;
-  border-color: #121212;
+  background-color: white;
+  border-color: tomato;
 }
 .navbar-default .navbar-brand {
   color: #ffffff;
@@ -4772,6 +4772,8 @@ a.thumbnail.active {
 .media-body {
   overflow: hidden;
   zoom: 1;
+  background: white;
+  padding: 5px;
 }
 .media,
 .media .media {
@@ -6387,33 +6389,7 @@ body {
   margin-left: 0;
 }
 
-.btn {
-  display: inline-block;
-  padding: 6px 14px;
-  background: #f2f2f2;
-  border-radius: 3px;
-  font-size: 0.8125em;
-  color: #b9bcbc;
-  transition: background .3s ease, color .3s ease;
-}
-.btn:hover {
-  background: #e5e5e5;
-  color: #929797;
-}
-.btn.btn-primary {
-  background: #a1d36e;
-  color: #fff;
-}
-.btn.btn-primary:hover, .btn.btn-primary.active {
-  background: #94cd5a;
-}
-.btn.btn-secondary {
-  background: #6ad1dd;
-  color: #fff;
-}
-.btn.btn-secondary:hover, .btn.btn-secondary.active {
-  background: #55cbd8;
-}
+
 .btn.btn-tertiary {
   background: #fc6e51;
   color: #fff;
@@ -6450,30 +6426,6 @@ body {
   display: block;
   width: 100%;
   text-align: center;
-}
-
-.btn-group {
-  position: relative;
-  display: inline-block;
-  margin: 10px 0;
-}
-.btn-group:before {
-  content: attr(data-grouptype);
-  color: #999;
-  display: block;
-  font-size: 0.8125em;
-  width: 19px;
-  height: 19px;
-  padding: 5px;
-  border-radius: 50%;
-  background: #fff;
-  position: absolute;
-  left: 50%;
-  top: 6px;
-  margin-left: -18px;
-}
-.btn-group a + a {
-  margin-left: 5px;
 }
 
 .btn-navbar .btn {

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/6035/icomoon-uikit-feb.eot?z1cr4t');
-	src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/6035/icomoon-uikit-feb.eot?#iefixz1cr4t') format('embedded-opentype'),
-		url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/6035/icomoon-uikit-feb.woff?z1cr4t') format('woff'),
-		url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/6035/icomoon-uikit-feb.ttf?z1cr4t') format('truetype'),
-		url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/6035/icomoon-uikit-feb.svg?z1cr4t#icomoon') format('svg');
+	src:url('icomoon-uikit-feb.eot?z1cr4t');
+	src:url('icomoon-uikit-feb.eot?#iefixz1cr4t') format('embedded-opentype'),
+		url('icomoon-uikit-feb.woff?z1cr4t') format('woff'),
+		url('icomoon-uikit-feb.ttf?z1cr4t') format('truetype'),
+		url('icomoon-uikit-feb.svg?z1cr4t#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
