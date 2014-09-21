@@ -261,19 +261,8 @@
                     <div class="thumbnail" style="padding: 0">
 
                         <div class="caption">
-                            <div class="dropdown">
-                                <span class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <span class="[ glyphicon glyphicon-chevron-down ]">BA7011</h2></span>
-                                </span>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                                </ul>
-                            </div>
                             
+                            <h2>BA7011 </h2>
                             <p>Merchant Banking and Financial Services </p>
                             <p><i class="icon icon-map-marker"></i> by <a href='#'>Ramkumar K</a>, <a href='#'>Kannan S</a></p>
                         </div>
