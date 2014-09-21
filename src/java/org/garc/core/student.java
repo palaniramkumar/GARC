@@ -33,7 +33,7 @@ public class student {
         this.section = section;
     }
 
-    private JSONObject getAttendanceSummary() throws IOException {
+    public JSONObject getAttendanceSummary() throws IOException {
         String sql
                 = "select a.subject_id,s.subject_name,"
                 + "sum(if(at.subject_id=a.subject_id and at.ab_type='P',1,0)),"
@@ -53,7 +53,7 @@ public class student {
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
             JSONArray jsonArray = new JSONArray();
-            int i=0;
+            int i = 0;
             if (rs.next()) {
                 do {
                     JSONObject jsonElement = new JSONObject();
@@ -65,7 +65,7 @@ public class student {
                     jsonElement.put("attendance_percentage", rs.getString(5));
 
                     jsonArray.add(jsonElement);
-                    
+
                     i++;
 
                 } while (rs.next());
@@ -89,7 +89,7 @@ public class student {
         return json;
     }
 
-    private JSONObject getMarks(String subjectId) throws IOException {
+    public JSONObject getMarks(String subjectId) throws IOException {
         String sql = "SELECT examname,examdate,weightage,max_marks,mark FROM assessment_master a left join marks m on a.examid=m.examid and m.student_id= ? where section = ? and subject_id= ?";
         JSONObject json = new JSONObject();
         List param = new ArrayList();
@@ -100,14 +100,23 @@ public class student {
         DBObject dbObj = new DBObject();
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
-
+            JSONArray jsonArray = new JSONArray();
+            int i = 0;
             if (rs.next()) {
-                json.put("userId", studentId);
-                json.put("examname", rs.getString("examname"));
-                json.put("examdate", rs.getString("examdate"));
-                json.put("weightage", rs.getString("weightage"));
-                json.put("maxMarks", rs.getString("max_marks"));
-                json.put("mark", rs.getString("mark"));
+                do {
+                    JSONObject jsonElement = new JSONObject();
+                    jsonElement.put("userId", studentId);
+                    jsonElement.put("examname", rs.getString("examname"));
+                    jsonElement.put("examdate", rs.getString("examdate"));
+                    jsonElement.put("weightage", rs.getString("weightage"));
+                    jsonElement.put("maxMarks", rs.getString("max_marks"));
+                    jsonElement.put("mark", rs.getString("mark"));
+                    jsonArray.add(jsonElement);
+                    i++;
+
+                } while (rs.next());
+                json.put("items", jsonArray);
+                json.put("count", i);
                 json.put("responsecode", "200");
             } else {
                 json.put("message", "Not Found");
@@ -126,7 +135,7 @@ public class student {
         return json;
     }
 
-    private JSONObject getDetailedAttendance(String month) throws IOException {
+    public JSONObject getDetailedAttendance(String month) throws IOException {
         String sql = "SELECT a.student_id,group_concat(s.subject_name order by hour) "
                 + "subject_name,group_concat(st.staff_name order by hour) staff_name,"
                 + "group_concat(a.hour order by hour) hour,group_concat(a.ab_type order by hour) ab_type, "
@@ -141,15 +150,37 @@ public class student {
         DBObject dbObj = new DBObject();
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
-
+            JSONArray jsonArray = new JSONArray();
+            int i = 0;
             if (rs.next()) {
-                json.put("userId", rs.getString("student_id"));
-                json.put("subject_name", rs.getString("subject_name"));
-                json.put("staff_name", rs.getString("staff_name"));
-                json.put("hour", rs.getString("hour"));
-                json.put("ab_type", rs.getString("ab_type")); //need to implement leave (L) details
-                json.put("subject_id", rs.getString("subject_id"));
-                json.put("date", rs.getString("date"));
+                do {
+                    JSONObject jsonElement = new JSONObject();
+                    jsonElement.put("userId", rs.getString("student_id"));
+                    jsonElement.put("date", rs.getString("date"));
+                    String[] hours = rs.getString("hour").split(",");
+                    String[] subject_names = rs.getString("subject_name").split(",");
+                    String[] staff_names = rs.getString("staff_name").split(",");
+                    String[] ab_types = rs.getString("ab_type").split(",");
+                    String[] subject_ids= rs.getString("subject_id").split(",");
+                    int j = 0;
+                    JSONArray jsonNestedArray = new JSONArray();
+                    while (j < hours.length) {
+                        JSONObject jsonNestedElement = new JSONObject();
+                        jsonNestedElement.put("subject_name", subject_names[j]);
+                        jsonNestedElement.put("staff_name", staff_names[j]);
+                        jsonNestedElement.put("hour", hours[j]);
+                        jsonNestedElement.put("ab_type", ab_types[j]); //need to implement leave (L) details
+                        jsonNestedElement.put("subject_id", subject_ids[j]);
+                        jsonNestedArray.add(jsonNestedElement);
+                        j++;
+                    }
+                    jsonElement.put("daylist", jsonNestedArray);
+                    jsonArray.add(jsonElement);
+                    i++;
+
+                } while (rs.next());
+                json.put("items", jsonArray);
+                json.put("count", i);
                 json.put("responsecode", "200");
             } else {
                 json.put("message", "Not Found");
@@ -181,6 +212,6 @@ public class student {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println(new student("312213631003", "3", "1").getAttendanceSummary().toJSONString());
+        System.out.println(new student("312213631003", "3", "1").getDetailedAttendance("8").toJSONString());
     }
 }

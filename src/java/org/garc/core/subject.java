@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.garc.config.DBObject;
 import org.garc.oauth.UserInfo;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
@@ -30,12 +31,21 @@ public class subject {
         DBObject dbObj = new DBObject();
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
-
+            JSONArray jsonArray = new JSONArray();
+            int i = 0;
             if (rs.next()) {
-                json.put("subject_name", rs.getString("subject_name"));
-                json.put("semester", rs.getString("semester"));
-                json.put("elective", rs.getString("elective"));
-                json.put("lab", rs.getString("lab"));
+                do {
+                    JSONObject jsonElement = new JSONObject();
+                    jsonElement.put("subject_name", rs.getString("subject_name"));
+                    jsonElement.put("semester", rs.getString("semester"));
+                    jsonElement.put("elective", rs.getString("elective"));
+                    jsonElement.put("lab", rs.getString("lab"));
+                    jsonArray.add(jsonElement);
+                    i++;
+
+                } while (rs.next());
+                json.put("items", jsonArray);
+                json.put("count", i);
                 json.put("responsecode", "200");
             } else {
                 json.put("message", "Not Found");
@@ -63,13 +73,22 @@ public class subject {
         DBObject dbObj = new DBObject();
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
-
+            JSONArray jsonArray = new JSONArray();
+            int i = 0;
             if (rs.next()) {
-                json.put("data", rs.getString("data"));
-                json.put("staff_id", rs.getString("staff_id"));
-                json.put("staff_name", rs.getString("staff_name"));
-                json.put("section", rs.getString("sec"));
-                json.put("semester", rs.getString("sem"));
+                do {
+                    JSONObject jsonElement = new JSONObject();
+                    jsonElement.put("data", rs.getString("data"));
+                    jsonElement.put("staff_id", rs.getString("staff_id"));
+                    jsonElement.put("staff_name", rs.getString("staff_name"));
+                    jsonElement.put("section", rs.getString("sec"));
+                    jsonElement.put("semester", rs.getString("sem"));
+                    jsonArray.add(jsonElement);
+                    i++;
+
+                } while (rs.next());
+                json.put("items", jsonArray);
+                json.put("count", i);
                 json.put("responsecode", "200");
             } else {
                 json.put("message", "Not Found");
@@ -88,43 +107,6 @@ public class subject {
         return json;
     }
 
-    /*private void getExamList(String subjectId, String section) throws IOException {
-     String sql=
-     "select a.examid from marks m,assessment_master a "
-     + "where a.examid=m.examid  and a.section= ? and a.subject_id= ?  "
-     + "and m.student_id=? ";
-     JSONObject json = new JSONObject();
-     List param = new ArrayList();
-     param.add(section);
-     param.add(subjectId);
-
-     DBObject dbObj = new DBObject();
-     try {
-     ResultSet rs = dbObj.getDbResultSet(sql, param);
-
-     if (rs.next()) {
-     json.put("data", rs.getString("data"));
-     json.put("staff_id", rs.getString("staff_id"));
-     json.put("staff_name", rs.getString("staff_name"));
-     json.put("section", rs.getString("sec"));
-     json.put("semeste", rs.getString("sem"));
-     json.put("responsecode", "200");
-     } else {
-     json.put("message", "Not Found");
-     json.put("responsecode", "404");
-     }
-     } catch (Exception e) {
-     json.put("response_code", "500");
-     json.put("message", e.toString());
-     e.printStackTrace();
-     }
-     try {
-     dbObj.close();
-     } catch (SQLException ex) {
-     Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     return json;
-     }*/
     private JSONObject getCourseCoverage(String subjectId, String section) throws IOException {
         String sql = "select s.staff_id,s.staff_name,data,sem,sec from courseoutline c,staff s where c.staff_id = s.staff_id and subject_id= ? and sec= ? ";
         JSONObject json = new JSONObject();
@@ -134,13 +116,22 @@ public class subject {
         DBObject dbObj = new DBObject();
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
-
+            JSONArray jsonArray = new JSONArray();
+            int i = 0;
             if (rs.next()) {
-                json.put("data", rs.getString("data"));
-                json.put("staff_id", rs.getString("staff_id"));
-                json.put("staff_name", rs.getString("staff_name"));
-                json.put("section", rs.getString("sec"));
-                json.put("semester", rs.getString("sem"));
+                do {
+                    JSONObject jsonElement = new JSONObject();
+                    jsonElement.put("data", rs.getString("data"));
+                    jsonElement.put("staff_id", rs.getString("staff_id"));
+                    jsonElement.put("staff_name", rs.getString("staff_name"));
+                    jsonElement.put("section", rs.getString("sec"));
+                    jsonElement.put("semester", rs.getString("sem"));
+                    jsonArray.add(jsonElement);
+                    i++;
+
+                } while (rs.next());
+                json.put("items", jsonArray);
+                json.put("count", i);
                 json.put("responsecode", "200");
             } else {
                 json.put("message", "Not Found");
@@ -170,13 +161,22 @@ public class subject {
         DBObject dbObj = new DBObject();
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
-
+            JSONArray jsonArray = new JSONArray();
+            int i = 0;
             if (rs.next()) {
-                json.put("category", rs.getString(1).equals("6")?"Others":rs.getString(1));
-                json.put("topic", rs.getString(2));
-                json.put("planned_hours", rs.getString(3));
-                json.put("actuals_hours", rs.getString(4));
-                json.put("finished_date", rs.getString(5));
+                do {
+                    JSONObject jsonElement = new JSONObject();
+                    jsonElement.put("category", rs.getString(1).equals("6") ? "Others" : rs.getString(1));
+                    jsonElement.put("topic", rs.getString(2));
+                    jsonElement.put("planned_hours", rs.getString(3));
+                    jsonElement.put("actuals_hours", rs.getString(4));
+                    jsonElement.put("finished_date", rs.getString(5));
+                    jsonArray.add(jsonElement);
+                    i++;
+
+                } while (rs.next());
+                json.put("items", jsonArray);
+                json.put("count", i);
                 json.put("responsecode", "200");
             } else {
                 json.put("message", "Not Found");
