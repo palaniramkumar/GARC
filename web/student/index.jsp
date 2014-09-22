@@ -125,9 +125,38 @@
                 }
             }
 
+            /** added for corner drop down **/
+
+            .panel-google-plus {
+                position: relative;
+                border-radius: 0px;
+                border: 1px solid rgb(216, 216, 216);
+                font-family: 'Roboto', sans-serif;
+            }
+            .panel-google-plus > .dropdown {
+                position: absolute;
+                top: 5px;
+                right: 15px;
+            }
+            .panel-google-plus > .dropdown > span > span {
+                font-size: 10px;   
+            }
+            .panel-google-plus > .dropdown > .dropdown-menu {
+                left: initial;
+                right: 0px;
+                border-radius: 2px;
+            }
+            /** read more **/
+            .readmore-js-toggle, .readmore-js-section {
+                text-align: right;
+                padding-right: 5px;
+            }
+
         </style>
         <meta charset="UTF-8">
         <title>Welcome Garc 4.0</title>
+
+
         <%@ include file="../layout/header.jsp" %>
 
     <nav class="navbar navbar-inverse navbar-static">
@@ -211,57 +240,91 @@
     </nav>
 
 
-    <div class="container">
-        <div class="span3 well">
+    <div class="container" >
+        <div class=" col-md-3  panel" style="padding: 10px;height: 410px">
             <center>
                 <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" class="img-circle"></a>
                 <h3>Joe Sixpack</h3>
-                <em>click my face for more</em>
+                <p><em>Last Login on 10/18/2014 at 10:30 </em></p>
+                <p>Faculty, Ramkumar</p>
+                <p>Semester, 3 and Section, A</p>
+                <p><span class="glyphicon glyphicon-inbox"> </span> 6 <span class="glyphicon glyphicon-calendar"> </span> 12 </p>
+                <div class="btn-group" data-grouptype="OR">
+                            <button class="btn btn-tertiary ">Apply Leave</button>
+                            <button class="btn btn-success ">Compose Mail</button>
+                        </div>
+                
             </center>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title" id="myModalLabel">More About Joe</h4>
+        <div class="col-md-6 panel panel-default" style="height: 410px">
+    
+    <div class="panel-heading ">Attendance</div>
+            <table class="table table-bordered table-hover ">
+                <thead>
+                <%
+                for(int i=0;i<10;i++){
+                    %><th><%=i%></th><%
+                }
+                %>
+                </thead>
+                    <%
+                for(int i=0;i<6;i++){
+                    %><tr><%
+                  for(int j=0;j<10;j++){
+                      %><td>P</td><%
+                  }  
+                  %></tr><%
+                }
+                    %>
+                    <tr>
+                        
+                    </tr>
+            </table>
+                    <p>Caption</p>
+                    <div>
+                        <span class="label label-default">BA7011</span>
+                        <span class="label label-primary">BA7012</span>
+                        <span class="label label-success">BA7013</span>
+                        <span class="label label-info">BA7015</span>
+                        <span class="label label-warning">BA7016</span>
+                        <span class="label label-danger">BA7017</span>
+                        <span class="label label-default">BA7018</span>
+                        <span class="label label-primary">BA7019</span>
+                        <span class="label label-success">BA7021</span>
+                        <span class="label label-info">BA7031</span>
+                        <span class="label label-warning">BA7041</span>
+                        <span class="label label-danger">BA7051</span>
                     </div>
-                    <div class="modal-body">
-                        <center>
-                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
-                            <h3 class="media-heading">Joe Sixpack <small>USA</small></h3>
-                            <span><strong>Skills: </strong></span>
-                            <span class="label label-warning">HTML5/CSS</span>
-                            <span class="label label-info">Adobe CS 5.5</span>
-                            <span class="label label-info">Microsoft Office</span>
-                            <span class="label label-success">Windows XP, Vista, 7</span>
-                        </center>
-                        <hr>
-                        <center>
-                            <p class="text-left"><strong>Bio: </strong><br>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>
-                            <br>
-                        </center>
-                    </div>
-                    <div class="modal-footer">
-                        <center>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">I've heard enough about Joe</button>
-                        </center>
-                    </div>
-                </div>
-            </div>
         </div>
+        
+        <div class="col-md-3 panel">
+            
+            <div id="graph"></div>
+           <h3>Attendance %</h3>
+        </div>
+        <!-- Modal -->
+
     </div>
 
     <div class="container">
         <div class="row">
             <ul class="thumbnails list-unstyled">
                 <li class="col-md-3">
-                    <div class="thumbnail" style="padding: 0">
-
+                    <div class="thumbnail panel-google-plus" style="padding: 0">
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                            </span>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                        </div>
                         <div class="caption">
-                            
+
                             <h2>BA7011 </h2>
                             <p>Merchant Banking and Financial Services </p>
                             <p><i class="icon icon-map-marker"></i> by <a href='#'>Ramkumar K</a>, <a href='#'>Kannan S</a></p>
@@ -273,13 +336,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4"><b>60%</b><br/><small>FUNDED</small></div>
-                                <div class="col-md-4"><b>$400</b><br/><small>PLEDGED</small></div>
-                                <div class="col-md-4"><b>18</b><br/><small>DAYS</small></div>
+                                <div class="col-md-4"><b>60%</b><br/><small>PRESENT</small></div>
+                                <div class="col-md-4"><b>$400</b><br/><small>LEAVE</small></div>
+                                <div class="col-md-4"><b>18</b><br/><small>OD</small></div>
                             </div>
 
                         </div>
-                        <div class="modal-footer" style="text-align: left">
+                        <div class="modal-footer more" style="text-align: left">
 
                             <div class="progress">
                                 <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -307,50 +370,182 @@
                     </div>
                 </li>
                 <li class="col-md-3">
-                    <div class="thumbnail" style="padding: 0">
-                        <div style="padding:4px">
-                            <img alt="300x200" style="width: 100%" src="http://placehold.it/200x150">
+                    <div class="thumbnail panel-google-plus" style="padding: 0">
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                            </span>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
                         </div>
                         <div class="caption">
-                            <h2>Project B</h2>
-                            <p>My project description</p>
-                            <p><i class="icon icon-map-marker"></i> Place, Country</p>
+
+                            <h2>BA7011 </h2>
+                            <p>Merchant Banking and Financial Services </p>
+                            <p><i class="icon icon-map-marker"></i> by <a href='#'>Ramkumar K</a>, <a href='#'>Kannan S</a></p>
                         </div>
                         <div class="modal-footer" style="text-align: left">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                                     <span class="sr-only">60% Complete</span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4"><b>250%</b><br/><small>FUNDED</small></div>
-                                <div class="col-md-4"><b>$50000</b><br/><small>PLEDGED</small></div>
-                                <div class="col-md-4"><b>FUNDED</b><br/><small>AUG 5</small></div>
+                                <div class="col-md-4"><b>60%</b><br/><small>PRESENT</small></div>
+                                <div class="col-md-4"><b>$400</b><br/><small>LEAVE</small></div>
+                                <div class="col-md-4"><b>18</b><br/><small>OD</small></div>
                             </div>
+
+                        </div>
+                        <div class="modal-footer more" style="text-align: left">
+
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 60%;" class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 40%;" class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="progress-meter">
+                                <div class="meter meter-left" style="width: 25%;"><span class="meter-text">Meh</span></div>
+                                <div class="meter meter-left" style="width: 25%;"><span class="meter-text">Sorta</span></div>
+                                <div class="meter meter-right" style="width: 20%;"><span class="meter-text">MASTER</span></div>
+                                <div class="meter meter-right" style="width: 30%;"><span class="meter-text">WOW</span></div>
+                            </div>
+
+
+
                         </div>
                     </div>
                 </li>
                 <li class="col-md-3">
-                    <div class="thumbnail" style="padding: 0">
-                        <div style="padding:4px">
-                            <img alt="300x200" style="width: 100%" src="http://placehold.it/200x150">
+                    <div class="thumbnail panel-google-plus" style="padding: 0">
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                            </span>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
                         </div>
                         <div class="caption">
-                            <h2>Project C</h2>
-                            <p>My project description</p>
-                            <p><i class="icon icon-map-marker"></i> Place, Country</p>
+
+                            <h2>BA7011 </h2>
+                            <p>Merchant Banking and Financial Services </p>
+                            <p><i class="icon icon-map-marker"></i> by <a href='#'>Ramkumar K</a>, <a href='#'>Kannan S</a></p>
                         </div>
                         <div class="modal-footer" style="text-align: left">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                                     <span class="sr-only">60% Complete</span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4"><b>30%</b><br/><small>FUNDED</small></div>
-                                <div class="col-md-4"><b>$1000</b><br/><small>PLEDGED</small></div>
-                                <div class="col-md-4"><b>NOT FUNDED</b><br/><small></small></div>
+                                <div class="col-md-4"><b>60%</b><br/><small>PRESENT</small></div>
+                                <div class="col-md-4"><b>$400</b><br/><small>LEAVE</small></div>
+                                <div class="col-md-4"><b>18</b><br/><small>OD</small></div>
                             </div>
+
+                        </div>
+                        <div class="modal-footer more" style="text-align: left">
+
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 60%;" class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 40%;" class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="progress-meter">
+                                <div class="meter meter-left" style="width: 25%;"><span class="meter-text">Meh</span></div>
+                                <div class="meter meter-left" style="width: 25%;"><span class="meter-text">Sorta</span></div>
+                                <div class="meter meter-right" style="width: 20%;"><span class="meter-text">MASTER</span></div>
+                                <div class="meter meter-right" style="width: 30%;"><span class="meter-text">WOW</span></div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </li>
+                <li class="col-md-3">
+                    <div class="thumbnail panel-google-plus" style="padding: 0">
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                            </span>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <div class="caption">
+
+                            <h2>BA7011 </h2>
+                            <p>Merchant Banking and Financial Services </p>
+                            <p><i class="icon icon-map-marker"></i> by <a href='#'>Ramkumar K</a>, <a href='#'>Kannan S</a></p>
+                        </div>
+                        <div class="modal-footer" style="text-align: left">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><b>60%</b><br/><small>PRESENT</small></div>
+                                <div class="col-md-4"><b>$400</b><br/><small>LEAVE</small></div>
+                                <div class="col-md-4"><b>18</b><br/><small>OD</small></div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer more" style="text-align: left">
+
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 60%;" class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 40%;" class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress">
+                                <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="progress-meter">
+                                <div class="meter meter-left" style="width: 25%;"><span class="meter-text">Meh</span></div>
+                                <div class="meter meter-left" style="width: 25%;"><span class="meter-text">Sorta</span></div>
+                                <div class="meter meter-right" style="width: 20%;"><span class="meter-text">MASTER</span></div>
+                                <div class="meter meter-right" style="width: 30%;"><span class="meter-text">WOW</span></div>
+                            </div>
+
+
+
                         </div>
                     </div>
                 </li>
@@ -404,7 +599,10 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+        
+        
+    </div>
     <div class="container">
         <div class="row">
             <h2 class="text-center">Progress Bar Meter!<br/><small>Hover over the options if you can't see the text</small></h2>
@@ -441,9 +639,41 @@
     </div>
 
     <%@ include file="../layout/footer.jsp" %>
+    <script src="../js/readmore.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+    <script src="../js/morris.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
+    <link rel="stylesheet" href="../css/morris.css">
     <script>
         $(function() {
             $('[data-toggle="tooltip"]').tooltip();
+            $('.more').readmore({
+                speed: 75,
+                maxHeight: 120
+            });
+            $(function() {
+                var val=Morris.Donut({
+  element: 'graph',
+  data: [
+    {value: 70, label: 'foo'},
+    {value: 15, label: 'bar'},
+    {value: 10, label: 'baz'},
+    {value: 5, label: 'A really really long label'}
+  ],
+  backgroundColor: '#ccc',
+  labelColor: '#060',
+  colors: [
+    '#0BA462',
+    '#39B580',
+    '#67C69D',
+    '#95D7BB'
+  ],
+  formatter: function (x) { return x + "%"}
+});
+                eval(val);
+                prettyPrint();
+            });
         });
     </script>
 </body>
