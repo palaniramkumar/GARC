@@ -152,6 +152,22 @@
                 padding-right: 5px;
             }
             #chart > svg {height: 50% !important;}
+            .dp:hover
+            {
+                border:2px solid #eee;
+                transform:rotate(360deg);
+                -ms-transform:rotate(360deg);  
+                -webkit-transform:rotate(360deg);  
+                /*-webkit-font-smoothing:antialiased;*/
+            }
+            .dp
+            {
+                border:10px solid #eee;
+                transition: all 0.2s ease-in-out;
+            }
+            .ds-btn li{ list-style:none; float:left; padding:2px; }
+.ds-btn li a span{width:100%;display:inline-block; text-align:left;}
+.ds-btn li a span small{width:100%; display:inline-block; text-align:left;}
         </style>
         <meta charset="UTF-8">
         <title>Welcome Garc 4.0</title>
@@ -241,34 +257,54 @@
 
 
     <div class="container" >
-        <div class=" col-md-3  panel" style="padding: 10px;">
-            <center>
-                <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" class="img-circle"></a>
-                <h3>Joe Sixpack</h3>
+        <div class="row">
+            <ul class="thumbnails list-unstyled">
+                <li class=" col-md-3  ">
+                    <div class="thumbnail panel-google-plus">
+                        <center>
+                            <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" class="img-circle dp"></a>
+                            <h3>Joe Sixpack</h3>
 
-            </center>
+                        </center>
+                    </div>
+                </li>
+
+                <li class="col-md-6 ">
+                    <ul class="nav nav-pills panel">
+
+                        <li><a href="#">Messages</a></li>
+                        <li><a href="#">Time Table </a></li>
+                        <li><a href="#" >Apply Leave</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle "  data-toggle="dropdown" href="#">
+                                More <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Course Outline</a></li>
+                                <li><a href="#">Course Planner</a></li>
+                                <li><a href="#">Semester Planner</a></li>
+                                <li><a href="#">My Attendance</a></li>
+                                <li><a href="#">Downloads</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <div class="panel">
+                        <p><strong>About: </strong> Web Designer / UI. </p>
+                    <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
+                    <p><strong>Last Login: </strong>
+                        <p><strong>Current Location: </strong>Chennai
+                    </div>
+                    
+                </li>
+                <li class="col-md-3 ">
+                    <div class="thumbnail panel-google-plus">
+                        <div id="graph" style="height: 150px"></div>
+                        <h3><center>Attendance %</center></h3>
+                    </div>
+                </li>
+            </ul>
         </div>
-        
-         <div class="col-md-6 panel">
-            
-                            <p><em>Last Login on 10/18/2014 at 10:30 </em></p>
-                <p>Faculty, Ramkumar</p>
-                <p>Semester, 3 and Section, A</p>
-                <p><span class="glyphicon glyphicon-inbox"> </span> 6 <span class="glyphicon glyphicon-calendar"> </span> 12 </p>
-                <div class="btn-group" data-grouptype="OR">
-                            <button class="btn btn-tertiary ">Apply Leave</button>
-                            <button class="btn btn-success ">Compose Mail</button>
-                        </div>
-                <p><span class="glyphicon glyphicon-inbox"> </span> 6 <span class="glyphicon glyphicon-calendar"> </span> 12 </p>
-                <p><span class="glyphicon glyphicon-inbox"> </span> 6 <span class="glyphicon glyphicon-calendar"> </span> 12 </p>
-           
-        </div>
-        <div class="col-md-3 panel">
-            
-            <div id="graph" style="height: 150px"></div>
-           <h3>Attendance %</h3>
-        </div>
-        <!-- Modal -->
 
     </div>
 
@@ -567,46 +603,45 @@
     </div>
     <div class="container">
         <div class="col-md-6 panel panel-default">
-    
-    <div class="panel-heading ">Attendance</div>
+
+            <div class="panel-heading ">Attendance</div>
             <table class="table table-bordered table-hover ">
                 <thead>
-                <%
-                for(int i=0;i<31;i++){
+                    <%                    for (int i = 0; i < 31; i++) {
                     %><th><%=i%></th><%
-                }
-                %>
-                </thead>
-                    <%
-                for(int i=0;i<6;i++){
-                    %><tr><%
-                  for(int j=0;j<31;j++){
-                      %><td>P</td><%
-                  }  
-                  %></tr><%
-                }
+                        }
                     %>
-                    <tr>
-                        
-                    </tr>
+                </thead>
+                <%
+                    for (int i = 0; i < 6; i++) {
+                %><tr><%
+                    for (int j = 0; j < 31; j++) {
+                    %><td>P</td><%
+                        }
+                    %></tr><%
+                        }
+                    %>
+                <tr>
+
+                </tr>
             </table>
-                    <p>Caption</p>
-                    <div>
-                        <span class="label label-default">BA7011</span>
-                        <span class="label label-primary">BA7012</span>
-                        <span class="label label-success">BA7013</span>
-                        <span class="label label-info">BA7015</span>
-                        <span class="label label-warning">BA7016</span>
-                        <span class="label label-danger">BA7017</span>
-                        <span class="label label-default">BA7018</span>
-                        <span class="label label-primary">BA7019</span>
-                        <span class="label label-success">BA7021</span>
-                        <span class="label label-info">BA7031</span>
-                        <span class="label label-warning">BA7041</span>
-                        <span class="label label-danger">BA7051</span>
-                    </div>
+            <p>Caption</p>
+            <div>
+                <span class="label label-default">BA7011</span>
+                <span class="label label-primary">BA7012</span>
+                <span class="label label-success">BA7013</span>
+                <span class="label label-info">BA7015</span>
+                <span class="label label-warning">BA7016</span>
+                <span class="label label-danger">BA7017</span>
+                <span class="label label-default">BA7018</span>
+                <span class="label label-primary">BA7019</span>
+                <span class="label label-success">BA7021</span>
+                <span class="label label-info">BA7031</span>
+                <span class="label label-warning">BA7041</span>
+                <span class="label label-danger">BA7051</span>
+            </div>
         </div>
-        
+
     </div>
     <div class="container">
         <div class="row">
@@ -658,28 +693,30 @@
                 maxHeight: 120
             });
             $(function() {
-                var val=Morris.Donut({
-  element: 'graph',
-  data: [
-    {value: 70, label: 'foo'},
-    {value: 15, label: 'bar'},
-    {value: 10, label: 'baz'},
-    {value: 5, label: 'A really really long label'}
-  ],
-  backgroundColor: '#ccc',
-  resize: true,
-  labelColor: '#060',
-  colors: [
-    '#0BA462',
-    '#39B580',
-    '#67C69D',
-    '#95D7BB'
-  ],
-  formatter: function (x) { return x + "%"}
-});
+                var val = Morris.Donut({
+                    element: 'graph',
+                    data: [
+                        {value: 70, label: 'foo'},
+                        {value: 15, label: 'bar'},
+                        {value: 10, label: 'baz'},
+                        {value: 5, label: 'A really really long label'}
+                    ],
+                    backgroundColor: '#ccc',
+                    resize: true,
+                    labelColor: '#060',
+                    colors: [
+                        '#0BA462',
+                        '#39B580',
+                        '#67C69D',
+                        '#95D7BB'
+                    ],
+                    formatter: function(x) {
+                        return x + "%"
+                    }
+                });
                 eval(val);
                 prettyPrint();
-                
+
             });
         });
     </script>
