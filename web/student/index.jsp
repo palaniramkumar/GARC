@@ -151,7 +151,7 @@
                 text-align: right;
                 padding-right: 5px;
             }
-
+            #chart > svg {height: 50% !important;}
         </style>
         <meta charset="UTF-8">
         <title>Welcome Garc 4.0</title>
@@ -241,11 +241,17 @@
 
 
     <div class="container" >
-        <div class=" col-md-3  panel" style="padding: 10px;height: 410px">
+        <div class=" col-md-3  panel" style="padding: 10px;">
             <center>
                 <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" class="img-circle"></a>
                 <h3>Joe Sixpack</h3>
-                <p><em>Last Login on 10/18/2014 at 10:30 </em></p>
+
+            </center>
+        </div>
+        
+         <div class="col-md-6 panel">
+            
+                            <p><em>Last Login on 10/18/2014 at 10:30 </em></p>
                 <p>Faculty, Ramkumar</p>
                 <p>Semester, 3 and Section, A</p>
                 <p><span class="glyphicon glyphicon-inbox"> </span> 6 <span class="glyphicon glyphicon-calendar"> </span> 12 </p>
@@ -253,53 +259,13 @@
                             <button class="btn btn-tertiary ">Apply Leave</button>
                             <button class="btn btn-success ">Compose Mail</button>
                         </div>
-                
-            </center>
+                <p><span class="glyphicon glyphicon-inbox"> </span> 6 <span class="glyphicon glyphicon-calendar"> </span> 12 </p>
+                <p><span class="glyphicon glyphicon-inbox"> </span> 6 <span class="glyphicon glyphicon-calendar"> </span> 12 </p>
+           
         </div>
-        <div class="col-md-6 panel panel-default" style="height: 410px">
-    
-    <div class="panel-heading ">Attendance</div>
-            <table class="table table-bordered table-hover ">
-                <thead>
-                <%
-                for(int i=0;i<10;i++){
-                    %><th><%=i%></th><%
-                }
-                %>
-                </thead>
-                    <%
-                for(int i=0;i<6;i++){
-                    %><tr><%
-                  for(int j=0;j<10;j++){
-                      %><td>P</td><%
-                  }  
-                  %></tr><%
-                }
-                    %>
-                    <tr>
-                        
-                    </tr>
-            </table>
-                    <p>Caption</p>
-                    <div>
-                        <span class="label label-default">BA7011</span>
-                        <span class="label label-primary">BA7012</span>
-                        <span class="label label-success">BA7013</span>
-                        <span class="label label-info">BA7015</span>
-                        <span class="label label-warning">BA7016</span>
-                        <span class="label label-danger">BA7017</span>
-                        <span class="label label-default">BA7018</span>
-                        <span class="label label-primary">BA7019</span>
-                        <span class="label label-success">BA7021</span>
-                        <span class="label label-info">BA7031</span>
-                        <span class="label label-warning">BA7041</span>
-                        <span class="label label-danger">BA7051</span>
-                    </div>
-        </div>
-        
         <div class="col-md-3 panel">
             
-            <div id="graph"></div>
+            <div id="graph" style="height: 150px"></div>
            <h3>Attendance %</h3>
         </div>
         <!-- Modal -->
@@ -600,7 +566,46 @@
         </div>
     </div>
     <div class="container">
-        
+        <div class="col-md-6 panel panel-default">
+    
+    <div class="panel-heading ">Attendance</div>
+            <table class="table table-bordered table-hover ">
+                <thead>
+                <%
+                for(int i=0;i<31;i++){
+                    %><th><%=i%></th><%
+                }
+                %>
+                </thead>
+                    <%
+                for(int i=0;i<6;i++){
+                    %><tr><%
+                  for(int j=0;j<31;j++){
+                      %><td>P</td><%
+                  }  
+                  %></tr><%
+                }
+                    %>
+                    <tr>
+                        
+                    </tr>
+            </table>
+                    <p>Caption</p>
+                    <div>
+                        <span class="label label-default">BA7011</span>
+                        <span class="label label-primary">BA7012</span>
+                        <span class="label label-success">BA7013</span>
+                        <span class="label label-info">BA7015</span>
+                        <span class="label label-warning">BA7016</span>
+                        <span class="label label-danger">BA7017</span>
+                        <span class="label label-default">BA7018</span>
+                        <span class="label label-primary">BA7019</span>
+                        <span class="label label-success">BA7021</span>
+                        <span class="label label-info">BA7031</span>
+                        <span class="label label-warning">BA7041</span>
+                        <span class="label label-danger">BA7051</span>
+                    </div>
+        </div>
         
     </div>
     <div class="container">
@@ -662,6 +667,7 @@
     {value: 5, label: 'A really really long label'}
   ],
   backgroundColor: '#ccc',
+  resize: true,
   labelColor: '#060',
   colors: [
     '#0BA462',
@@ -673,6 +679,7 @@
 });
                 eval(val);
                 prettyPrint();
+                
             });
         });
     </script>
