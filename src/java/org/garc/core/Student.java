@@ -21,13 +21,13 @@ import org.json.simple.JSONObject;
  *
  * @author Ramkumar
  */
-public class student {
+public class Student {
 
     private String studentId;
     private String semester;
     private String section;
 
-    public student(String studentId, String semester, String section) {
+    public Student(String studentId, String semester, String section) {
         this.studentId = studentId;
         this.semester = semester;
         this.section = section;
@@ -59,10 +59,11 @@ public class student {
                     JSONObject jsonElement = new JSONObject();
                     jsonElement.put("subjectId", rs.getString("subject_id"));
                     jsonElement.put("subjectName", rs.getString("subject_name"));
-                    jsonElement.put("attended", studentId);
-                    jsonElement.put("onduty", rs.getString(3));
-                    jsonElement.put("attendance_taken", rs.getString(4));
-                    jsonElement.put("attendance_percentage", rs.getString(5));
+                    jsonElement.put("attended", rs.getString(3));
+                    jsonElement.put("onduty", rs.getString(4));
+                    jsonElement.put("attendance_taken", rs.getString(5));
+                    int percentage = rs.getInt(5)!=0 ?(rs.getInt(3)+rs.getInt(4))*100/rs.getInt(5):0 ;
+                    jsonElement.put("attendance_percentage", percentage);
 
                     jsonArray.add(jsonElement);
 
@@ -210,8 +211,10 @@ public class student {
     private void getSubjectList() {
 
     }
-
+    public void close(){
+        
+    }
     public static void main(String[] args) throws IOException {
-        System.out.println(new student("312213631003", "3", "1").getDetailedAttendance("8").toJSONString());
+        System.out.println(new Student("312213631003", "3", "1").getAttendanceSummary().toJSONString());
     }
 }
