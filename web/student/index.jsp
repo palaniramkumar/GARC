@@ -4,6 +4,7 @@
     Author     : Ramkumar
 --%>
 
+<%@page import="org.garc.core.Subject"%>
 <%@page import="org.garc.core.Student"%>
 <%@page import="org.garc.core.Faculty"%>
 <%@page import="org.garc.core.Faculty"%>
@@ -120,19 +121,17 @@
         <%!
             String getValueByKey(JSONObject json, String key, int i) {
                 String parsedValue = "";
-            
-                try{
+
+                try {
                     parsedValue = ((JSONObject) ((JSONArray) json.get("items")).get(i)).get(key).toString();
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     //e.printStackTrace();
                     System.out.print(json);
                 }
                 return parsedValue;
             }
         %>
-        <%  
-            JSONObject user = new UserInfo().getAuthToken("312213631003", "demo");
+        <%            JSONObject user = (JSONObject) session.getAttribute("user");
             Student me = new Student(user.get("id").toString(),
                     user.get("semester").toString(), user.get("section").toString());
             JSONObject reportee = new Faculty().getClassIncharge(user.get("semester")
@@ -189,11 +188,10 @@
                                     <span class="[ glyphicon glyphicon-chevron-down ]"></span>
                                 </span>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$('#viewer').slideDown('slow')">Action</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$('#viewer').slideDown('slow')">Course Planner</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Course Outline</a></li>
                                     <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Download Resource</a></li>
                                 </ul>
                             </div>
                             <p><strong><span class="glyphicon glyphicon-user"></span>  Reportee: </strong> <a href='#'><%=getValueByKey(reportee, "title", 0)%> <%=getValueByKey(reportee, "name", 0)%></a> <%=getValueByKey(reportee, "qualification", 0)%>. </p>
@@ -205,18 +203,7 @@
                     </li>
                     <li class="col-md-3 ">
                         <div class="thumbnail panel-google-plus">
-                            <div class="dropdown">
-                                <span class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <span class="[ glyphicon glyphicon-chevron-down ]"></span>
-                                </span>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" >Action</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                    <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                                </ul>
-                            </div>
+
                             <div id="graph" style="height: 150px"></div>
                             <h3><center><span class="glyphicon glyphicon-ok"></span> Attendance %</center></h3>
                         </div>
@@ -228,42 +215,43 @@
         <div class="container " id="viewer" style="display: none" >
             <div class="panel panel-default">
 
-                <div class="panel-heading ">Attendance<span class="close glyphicon glyphicon-remove-circle" onclick="$('#viewer').slideUp()"></span></div>
+                <div class="panel-heading" ><span>Attendance</span><span class="close glyphicon glyphicon-remove-circle" onclick="$('#viewer').slideUp()"></span></div>
+                <div id="response">
+                    <table class="table table-bordered table-hover ">
+                        <thead>
+                            <%                    for (int i = 0; i < 31; i++) {
+                            %><th><%=i%></th><%
+                                }
+                            %>
+                        </thead>
+                        <%
+                            for (int i = 0; i < 6; i++) {
+                        %><tr><%
+                            for (int j = 0; j < 31; j++) {
+                            %><td>P</td><%
+                                }
+                            %></tr><%
+                                }
+                            %>
+                        <tr>
 
-                <table class="table table-bordered table-hover ">
-                    <thead>
-                        <%                    for (int i = 0; i < 31; i++) {
-                        %><th><%=i%></th><%
-                            }
-                        %>
-                    </thead>
-                    <%
-                        for (int i = 0; i < 6; i++) {
-                    %><tr><%
-                        for (int j = 0; j < 31; j++) {
-                        %><td>P</td><%
-                            }
-                        %></tr><%
-                            }
-                        %>
-                    <tr>
-
-                    </tr>
-                </table>
-                <p>Caption</p>
-                <div>
-                    <span class="label label-default">BA7011</span>
-                    <span class="label label-primary">BA7012</span>
-                    <span class="label label-success">BA7013</span>
-                    <span class="label label-info">BA7015</span>
-                    <span class="label label-warning">BA7016</span>
-                    <span class="label label-danger">BA7017</span>
-                    <span class="label label-default">BA7018</span>
-                    <span class="label label-primary">BA7019</span>
-                    <span class="label label-success">BA7021</span>
-                    <span class="label label-info">BA7031</span>
-                    <span class="label label-warning">BA7041</span>
-                    <span class="label label-danger">BA7051</span>
+                        </tr>
+                    </table>
+                    <p>Caption</p>
+                    <div>
+                        <span class="label label-default">BA7011</span>
+                        <span class="label label-primary">BA7012</span>
+                        <span class="label label-success">BA7013</span>
+                        <span class="label label-info">BA7015</span>
+                        <span class="label label-warning">BA7016</span>
+                        <span class="label label-danger">BA7017</span>
+                        <span class="label label-default">BA7018</span>
+                        <span class="label label-primary">BA7019</span>
+                        <span class="label label-success">BA7021</span>
+                        <span class="label label-info">BA7031</span>
+                        <span class="label label-warning">BA7041</span>
+                        <span class="label label-danger">BA7051</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -272,9 +260,20 @@
                 <ul class="thumbnails list-unstyled">
                     <%
                         JSONObject attendanceSummary = me.getAttendanceSummary();
-                        final String [] theme ={"success","info","warning","danger"}; 
+                        final String[] theme = {"success", "info", "warning", "danger"};
                         int count = Integer.parseInt(attendanceSummary.get("count").toString());
+
                         for (int i = 0; i < count; i++) {
+                            JSONObject assigenedFaculty = new Subject().getFaculties(getValueByKey(attendanceSummary, "subjectId", i));
+                            int j = 0;
+                            for (; j < Integer.parseInt(assigenedFaculty.get("count").toString()); j++) {
+                                String section = getValueByKey(assigenedFaculty, "section", j);
+                                if (section.equals(user.get("section")) || assigenedFaculty.get("electives").equals("YES")) {
+                                    break;
+                                }
+                            }
+                            JSONObject faculty = (JSONObject) ((JSONArray) assigenedFaculty.get("items")).get(j);
+                            String subjectid = getValueByKey(attendanceSummary, "subjectId", i);
                     %>
                     <li class="col-md-3">
                         <div class="thumbnail panel-google-plus more" style="padding: 0">
@@ -283,18 +282,18 @@
                                     <span class="[ glyphicon glyphicon-chevron-down ]"></span>
                                 </span>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'coursecoverage', '<%=subjectid%>')">Course Coverage</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'courseoutline', '<%=subjectid%>')">Course Outline</a></li>
                                     <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', '', '<%=subjectid%>')">Download Resource</a></li>
+
                                 </ul>
                             </div>
                             <div class="caption">
 
-                                <h2><%=getValueByKey(attendanceSummary, "subjectId", i)%> </h2>
+                                <h2><%=subjectid%> </h2>
                                 <p><%=getValueByKey(attendanceSummary, "subjectName", i)%>  </p>
-                                <p><i class="icon icon-map-marker"></i> by <a href='#'>Ramkumar K</a>, <a href='#'>Kannan S</a></p>
+                                <p><i class="icon icon-map-marker"></i> by <a href='#'><%=faculty.get("staff_name")%></a></p>
                             </div>
                             <div class="modal-footer" style="text-align: left">
                                 <div class="progress">
@@ -309,35 +308,36 @@
                                 </div>
 
                             </div>
-                                <%
+                            <%
                                 JSONObject marks = me.getMarks(getValueByKey(attendanceSummary, "subjectId", i));
-                                
-                                %>
+
+                            %>
                             <div class="modal-footer " style="text-align: left">
-                                <% 
-                                if(marks.get("responsecode").equals("200"))
-                                for (int j=0;j< Integer.parseInt(marks.get("count").toString());j++){%>                              
-                                
+                                <%                                    if (marks.get("responsecode").equals("200"))
+                                        for (j = 0; j < Integer.parseInt(marks.get("count").toString()); j++) {%>                              
+
                                 <div class="progress">
-                                    <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-<%=theme[j%4]%>" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="<%=getValueByKey(marks, "examname", j)%>">
+                                    <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-<%=theme[j % 4]%>" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="<%=getValueByKey(marks, "examname", j)%>">
                                         <span class="sr-only"><%=getValueByKey(marks, "mark", j)%>% Complete</span>
                                         <span class="progress-type"><%=getValueByKey(marks, "examname", j)%></span>
 
                                     </div>
                                 </div>
-                                        <%}%>
-                                
-                                <div class="progress">
-                                    <div data-percentage="0%" style="width: 20%;" class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                                <%}
+                                else {%>
 
+                                <div >
+                                    No Exams Scheduled
+                                </div>
+                                <%}%>
+                                <%if (marks.get("responsecode").equals("200")) {%>
                                 <div class="progress-meter">
                                     <div class="meter meter-left" style="width: 25%;"><span class="meter-text">Meh</span></div>
                                     <div class="meter meter-left" style="width: 25%;"><span class="meter-text">Sorta</span></div>
                                     <div class="meter meter-right" style="width: 20%;"><span class="meter-text">MASTER</span></div>
                                     <div class="meter meter-right" style="width: 30%;"><span class="meter-text">WOW</span></div>
                                 </div>
-
+                                <%}%>
 
 
                             </div>
@@ -423,39 +423,45 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
     <link rel="stylesheet" href="../css/morris.css">
     <script>
-                    $(function() {
-                        $('[data-toggle="tooltip"]').tooltip();
-                        $('.more').readmore({
-                            speed: 75,
-                            maxHeight: 350
-                        });
-                        $(function() {
-                            var val = Morris.Donut({
-                                element: 'graph',
-                                data: [
-                                    {value: 70, label: 'foo'},
-                                    {value: 15, label: 'bar'},
-                                    {value: 10, label: 'baz'},
-                                    {value: 5, label: 'A really really long label'}
-                                ],
-                                backgroundColor: '#ccc',
-                                resize: true,
-                                labelColor: '#060',
-                                colors: [
-                                    '#0BA462',
-                                    '#39B580',
-                                    '#67C69D',
-                                    '#95D7BB'
-                                ],
-                                formatter: function(x) {
-                                    return x + "%"
-                                }
-                            });
-                            eval(val);
-                            prettyPrint();
+                                        $(function() {
+                                            $('[data-toggle="tooltip"]').tooltip();
+                                            $('.more').readmore({
+                                                speed: 75,
+                                                maxHeight: 325
+                                            });
+                                            $(function() {
 
-                        });
-                    });
+                                                $.ajax({
+                                                    type: "post", url: "${pageContext.request.contextPath}/core/student.jsp?action=attendancepie",
+                                                    success: function(data, text) {
+                                                        alert(data);
+                                                        var json = $.parseJSON(data);
+                                                        
+                                                        var val = Morris.Donut({
+                                                            element: 'graph',
+                                                            data: json["items"],
+                                                            backgroundColor: '#ccc',
+                                                            resize: true, labelColor: '#060',
+                                                            colors: [
+                                                                '#0BA462',
+                                                                '#F80000',
+                                                                '#DFD24A',
+                                                            ],
+                                                            formatter: function(x) {
+                                                                return x + "%"
+                                                            }
+                                                        });
+                                                        eval(val);
+                                                        prettyPrint();
+                                                    },
+                                                    error: function(request, status, error) {
+                                                        $('#graph').html(request.responseText);
+                                                    }
+                                                });
+
+
+                                            });
+                                        });
     </script>
 </body>
 

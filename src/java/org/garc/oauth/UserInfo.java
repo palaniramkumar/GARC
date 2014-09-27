@@ -57,7 +57,7 @@ public class UserInfo {
                     json.put("block", result.getString("isattend"));
                     json.put("last_login_at", result.getString("last_login_at"));
                     json.put("redirectURI", "/student");
-                    json.put("response_code", "301");
+                    json.put("responsecode", "301");
                     json.put("message", "Credentials Valid");
                 } else {
                     json.put("response_code", "401");

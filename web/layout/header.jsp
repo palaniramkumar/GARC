@@ -14,6 +14,7 @@
         <script src='${pageContext.request.contextPath}/js/jquery.flexslider-min.js'></script>
         <script src='${pageContext.request.contextPath}/js/bootstrap.min.js'></script>
         <script src="${pageContext.request.contextPath}/js/index.js"></script>
+        <script src="${pageContext.request.contextPath}/js/garc.js"></script>
     </head>
     <body>
 

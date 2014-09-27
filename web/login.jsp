@@ -16,7 +16,7 @@
             <div class="panel panel-title" >
                 <div class="panel-heading">
                     <div class="panel-title">Sign In</div>
-                    
+
                 </div>     
 
                 <div style="padding-top:30px" class="panel-body" >
@@ -36,28 +36,16 @@
                         </div>
 
 
-
-                        <div class="input-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                </label>
-                            </div>
-                        </div>
-
-
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->
-
-                            <div class="col-sm-12 controls">
-                                <a id="btn-login" href="#" class="btn btn-primary">Login  </a>
-                                
-
+                            <div class="col-sm-12 controls ">
+                                <a id="btn-login" href="#" class="btn btn-tertiary btn-large  " onclick="validateUser('${pageContext.request.contextPath}')">Login  </a>
                             </div>
                         </div>
+                            <div id="response">
+                            </div>
 
 
-                        
                     </form>     
 
 
@@ -65,7 +53,7 @@
                 </div>                     
             </div>  
         </div>
-        
+
     </div>
 
     <%@ include file="layout/footer.jsp" %>
