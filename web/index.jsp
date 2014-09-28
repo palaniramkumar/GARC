@@ -28,8 +28,8 @@
                         <p>Recognizing that currently multiple dissimilar repositories exist at SoMCA to share, transfer and maintain academic information, course material, course management review and realizing the need to use IT based solution to deal with this situation, GARC has evolved. <br />___<br />
                             <br />P.S The code or enhancement is always welcome, please contact me if you're interested.</p>
                         <div class="btn-group" data-grouptype="OR">
-                            <button class="btn btn-tertiary ">Login Now</button>
-                            <button class="btn btn-success ">Download</button>
+                            <button class="btn btn-tertiary" onclick="window.location='${pageContext.request.contextPath}/login.jsp'">Login Now</button>
+                            <button class="btn btn-success " onclick="window.location='http://github.com/palaniramkumar/GARC'">Download</button>
                         </div>
                         <div class="intents">
                             <span class="icon icon-heart"></span>

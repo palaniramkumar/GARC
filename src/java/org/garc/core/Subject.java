@@ -24,7 +24,7 @@ import org.json.simple.JSONObject;
 public class Subject {
 
     public JSONObject getSubjectName(String subjectId) throws IOException {
-        String sql = sql = "select subject_name,semester,elective,lab from subject where subject_id= ?'";
+        String sql = "select subject_name,semester,elective,lab from subject where subject_id= ?'";
         JSONObject json = new JSONObject();
         List param = new ArrayList();
         param.add(subjectId);

@@ -4,8 +4,13 @@
     Author     : Ramkumar
 --%>
 
+<%@page import="org.garc.core.misc"%>
+<%@page import="java.util.Calendar"%>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-            <div class="container">
-                welcome
-            </div>
-        </nav>
+    <div class="container" >
+        <p class="navbar-text" style="color: gray;text-align: center;width: 100%">Visitor Number: <%= new misc().getHitCount(session.isNew()).get("count") %>
+                
+            | Copyright 2008-<%=Calendar.getInstance().get(Calendar.YEAR)%> GARC</p>
+        
+    </div>
+</nav>
