@@ -434,7 +434,6 @@
                                                 $.ajax({
                                                     type: "post", url: "${pageContext.request.contextPath}/core/student.jsp?action=attendancepie",
                                                     success: function(data, text) {
-                                                        alert(data);
                                                         var json = $.parseJSON(data);
                                                         
                                                         var val = Morris.Donut({

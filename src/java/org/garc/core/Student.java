@@ -259,8 +259,45 @@ public class Student {
 
     }
 
-    private void getSubjectList() {
+    public static JSONObject getStudentsList() throws IOException {
+        String sql = "SELECT username,student_name,semester,section,batch FROM students order by batch ,username ";
+        JSONObject json = new JSONObject();
+        List param = new ArrayList();
+        DBObject dbObj = new DBObject();
+        try {
+            ResultSet rs = dbObj.getDbResultSet(sql, param);
+            JSONArray jsonArray = new JSONArray();
+            int i = 0;
+            if (rs.next()) {
+                do {
+                    JSONObject jsonElement = new JSONObject();
+                    jsonElement.put("name", rs.getString("student_name"));
+                    jsonElement.put("id", rs.getString("username"));
+                    jsonElement.put("semester", rs.getString("semester"));
+                    jsonElement.put("section", rs.getString("section"));
+                    jsonElement.put("batch", rs.getString("batch"));                    
+                    jsonArray.add(jsonElement);
+                    i++;
 
+                } while (rs.next());
+                json.put("items", jsonArray);
+                json.put("count", i);
+                json.put("responsecode", "200");
+            } else {
+                json.put("message", "Not Found");
+                json.put("responsecode", "404");
+            }
+        } catch (Exception e) {
+            json.put("response_code", "500");
+            json.put("message", e.toString());
+            e.printStackTrace();
+        }
+        try {
+            dbObj.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return json;
     }
 
     public void close() {
@@ -268,6 +305,6 @@ public class Student {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println(new Student("312213631002", "3", "1").getattendanceGraph().toJSONString());
+        System.out.println( Student.getStudentsList().toJSONString());
     }
 }

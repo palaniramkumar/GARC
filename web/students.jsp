@@ -4,6 +4,9 @@
     Author     : Ramkumar
 --%>
 
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.garc.core.Student"%>
+<%@page import="org.json.simple.JSONObject"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,41 +15,46 @@
         <title>Welcome Garc 4.0</title>
         <%@ include file="layout/header.jsp" %>
     <div class="container">
-        <div class="btn-group">
-  <button type="button" class="btn btn-info">1</button>
-  <button type="button" class="btn btn-info">2</button>
+         <%!
+            String getValueByKey(JSONObject json, String key, int i) {
+                String parsedValue = "";
 
-  <div class="btn-group">
-    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-      Dropdown
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Dropdown link</a></li>
-      <li><a href="#">Dropdown link</a></li>
-    </ul>
-  </div>
-  
-</div>
-        <div class="row">
-            <div class="col-lg-5">
+                try {
+                    parsedValue = ((JSONObject) ((JSONArray) json.get("items")).get(i)).get(key).toString();
+                } catch (Exception e) {
+                    //e.printStackTrace();
+                    System.out.print(json);
+                }
+                return parsedValue;
+            }
+        %>
+         <div class="row">
+        <% 
+        
+            JSONObject json = Student.getStudentsList();
+            int count = Integer.parseInt(json.get("count").toString());
+
+            for (int i = 0; i < count; i++) {
+        %>
+       
+        <div class="col-lg-4" style="height: 150px;">
                 <div class="media ">
                     <a class="pull-left" href="#">
-                        <img class="media-object dp img-circle" src="http://www.huffmancode.com/img/hardik.jpg" style="width: 100px;height:100px;">
+                        <img class="media-object dp img-circle" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" style="width: 100px;height:100px;">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">Hardik Sondagar <small> India</small></h4>
-                        <h5>Software Developer at <a href="http://gridle.in">Gridle.in</a></h5>
+                        <h4 class="media-heading"><%=getValueByKey(json, "name", i)%></h4>
+                        <h5><%=getValueByKey(json, "id", i)%></h5>
                         <hr style="margin:8px auto">
 
-                        <span class="label label-default">HTML5/CSS3</span>
-                        <span class="label label-default">jQuery</span>
-                        <span class="label label-info">CakePHP</span>
-                        <span class="label label-default">Android</span>
+                        <span class="label label-default">Batch <%=getValueByKey(json, "batch", i)%></span>
+                        <span class="label label-default">Semester <%=getValueByKey(json, "semester", i)%></span>
+                        <span class="label label-info"><%=getValueByKey(json, "section", i)%></span>
                     </div>
                 </div>
 
             </div>
+            <%}%>
 
 
 
@@ -54,16 +62,16 @@
     </div>
     <%@ include file="layout/footer.jsp" %>
     <script type="text/javascript">
- $(function(){
+        $(function() {
 
-    $(".dropdown-menu li a").click(function(){
+            $(".dropdown-menu li a").click(function() {
 
-      $(".btn:first-child").text($(this).text());
-      $(".btn:first-child").val($(this).text());
+                $(".btn:first-child").text($(this).text());
+                $(".btn:first-child").val($(this).text());
 
-   });
+            });
 
-});
+        });
 
     </script>
 </body>
