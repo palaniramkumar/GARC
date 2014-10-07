@@ -259,6 +259,7 @@
             <div class="row">
                 <ul class="thumbnails list-unstyled">
                     <%
+                        JSONObject leaveSummary = me.getLeaveSummary();    
                         JSONObject attendanceSummary = me.getAttendanceSummary();
                         final String[] theme = {"success", "info", "warning", "danger"};
                         int count = Integer.parseInt(attendanceSummary.get("count").toString());
@@ -274,6 +275,9 @@
                             }
                             JSONObject faculty = (JSONObject) ((JSONArray) assigenedFaculty.get("items")).get(j);
                             String subjectid = getValueByKey(attendanceSummary, "subjectId", i);
+                            String onduty=getValueByKey(attendanceSummary, "onduty", i);
+                            String attended = getValueByKey(attendanceSummary, "attended", i);
+                            String tooltipTxt = "total classes taken is "+getValueByKey(attendanceSummary, "attendance_taken", i)+" and you have attended the "+attended+" classes + "+onduty+" OD(s). Which is "+ getValueByKey(attendanceSummary, "attendance_percentage", i)+"%";
                     %>
                     <li class="col-md-3">
                         <div class="thumbnail panel-google-plus more" style="padding: 0">
@@ -286,6 +290,7 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'courseoutline', '<%=subjectid%>')">Course Outline</a></li>
                                     <li role="presentation" class="divider"></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', '', '<%=subjectid%>')">Download Resource</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', '', '<%=subjectid%>')">View Attendance</a></li>
 
                                 </ul>
                             </div>
@@ -297,28 +302,40 @@
                             </div>
                             <div class="modal-footer" style="text-align: left">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="<%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>%;">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="<%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>%;" data-toggle="tooltip" data-placement="top" title="<%=tooltipTxt%>">
                                         <span class="sr-only"><%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>% Complete</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4"><b><%=getValueByKey(attendanceSummary, "attended", i)%></b><br/><small>PRESENT</small></div>
-                                    <div class="col-md-4"><b><%=getValueByKey(attendanceSummary, "onduty", i)%></b><br/><small>LEAVE</small></div>
-                                    <div class="col-md-4"><b><%=getValueByKey(attendanceSummary, "onduty", i)%> </b><br/><small>OD</small></div>
+                                    <div class="col-md-4"><b><%=attended%></b><br/><small>PRESENT</small></div>
+                                    <div class="col-md-4"><b><%=leaveSummary.get(subjectid)==null?0:leaveSummary.get(subjectid)%></b><br/><small>LEAVE</small></div>
+                                    <div class="col-md-4"><b><%=onduty%> </b><br/><small>OD</small></div>
                                 </div>
 
                             </div>
                             <%
                                 JSONObject marks = me.getMarks(getValueByKey(attendanceSummary, "subjectId", i));
-
+                                String testMarks = getValueByKey(marks, "mark", j);
+                                String maxMarks = getValueByKey(marks, "maxMarks", j);
+                                String weightage = getValueByKey(marks, "weightage", j);
+                                tooltipTxt ="";
+                                String percent = "0";
+                                try{
+                                    percent=""+(int)(Integer.parseInt(testMarks)*100 / Integer.parseInt(maxMarks));
+                                    tooltipTxt = "You have scored "+percent+"% ("+testMarks+") in "+getValueByKey(marks, "examname", j);
+                                }
+                                catch(NumberFormatException e){
+                                    //out.print(marks);
+                                    tooltipTxt = "The "+getValueByKey(marks, "examname", j)+" Scheduled on "+getValueByKey(marks, "examdate", j);
+                                }
                             %>
                             <div class="modal-footer " style="text-align: left">
                                 <%                                    if (marks.get("responsecode").equals("200"))
                                         for (j = 0; j < Integer.parseInt(marks.get("count").toString()); j++) {%>                              
 
                                 <div class="progress">
-                                    <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-<%=theme[j % 4]%>" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="<%=getValueByKey(marks, "examname", j)%>">
-                                        <span class="sr-only"><%=getValueByKey(marks, "mark", j)%>% Complete</span>
+                                    <div data-percentage="0%" style="width: <%=percent%>%;" class="progress-bar progress-bar-<%=theme[j % 4]%>" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="<%=percent.equals("0")?"right":"top"%>" title="<%=tooltipTxt%>">
+                                        <span class="sr-only"><%=percent%>% Complete</span>
                                         <span class="progress-type"><%=getValueByKey(marks, "examname", j)%></span>
 
                                     </div>

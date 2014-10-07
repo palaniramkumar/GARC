@@ -33,6 +33,43 @@ public class Student {
         this.section = section;
     }
 
+    public JSONObject getLeaveSummary() throws IOException {
+        String sql = "SELECT a.student_id, a.subject_id,  count(a.subject_id) count FROM leaveinfo l , attendance a "
+                + "where l.student_id = ?  and a.ab_type = 'A' "
+                + "and a.student_id = l.student_id and l.date = a.date and l.hour = a.hour group by a.subject_id";
+        List param = new ArrayList();
+        param.add(studentId);
+        JSONObject json = new JSONObject();
+        DBObject dbObj = new DBObject();
+        try {
+            ResultSet rs = dbObj.getDbResultSet(sql, param);
+            int total = 0;
+            if (rs.next()) {  
+                json.put("student_id", rs.getString("student_id"));
+                do {
+                    json.put(rs.getString("subject_id"), rs.getInt("count"));
+                    total+=rs.getInt("count");
+                } while (rs.next());                
+                json.put("total", total);
+                json.put("responsecode", "200");
+            } else {
+                json.put("message", "Not Found");
+                json.put("responsecode", "404");
+            }
+        }
+        catch (Exception e) {
+            json.put("responsecode", "500");
+            json.put("message", e.toString());
+            e.printStackTrace();
+        }
+        try {
+            dbObj.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return json;
+    }
+
     public JSONObject getattendanceGraph() throws IOException {
         String sql = "select count(ab_type) total,sum(if (ab_type = 'P', 1 , 0)) present,"
                 + "sum(if (ab_type = 'O', 1 , 0)) od from attendance where "
@@ -48,12 +85,12 @@ public class Student {
             if (rs.next()) {
                 int total = rs.getInt("total");
                 JSONObject jsonElement = new JSONObject();
-                jsonElement.put("value", rs.getInt("present")*100/total);
-                jsonElement.put("label", "Present ("+rs.getInt("present")+")");
+                jsonElement.put("value", rs.getInt("present") * 100 / total);
+                jsonElement.put("label", "Present (" + rs.getInt("present") + ")");
                 jsonArray.add(jsonElement);
                 jsonElement = new JSONObject();
-                jsonElement.put("value", rs.getInt("od")*100/total);
-                jsonElement.put("label", "On Duty ("+rs.getInt("od")+")");
+                jsonElement.put("value", rs.getInt("od") * 100 / total);
+                jsonElement.put("label", "On Duty (" + rs.getInt("od") + ")");
                 jsonArray.add(jsonElement);
                 sql = "select count(status) `leave` from leaveinfo where student_id = ? and status = 'L'";
                 param.clear();
@@ -62,8 +99,8 @@ public class Student {
                 rs = dbObj.getDbResultSet(sql, param);
                 if (rs.next()) {
                     jsonElement = new JSONObject();
-                    jsonElement.put("value", rs.getInt("leave")*100/total);
-                    jsonElement.put("label", "Applied Leave ("+rs.getInt("leave")+")");
+                    jsonElement.put("value", rs.getInt("leave") * 100 / total);
+                    jsonElement.put("label", "Applied Leave (" + rs.getInt("leave") + ")");
                     jsonArray.add(jsonElement);
                 }
             }
@@ -275,7 +312,7 @@ public class Student {
                     jsonElement.put("id", rs.getString("username"));
                     jsonElement.put("semester", rs.getString("semester"));
                     jsonElement.put("section", rs.getString("section"));
-                    jsonElement.put("batch", rs.getString("batch"));                    
+                    jsonElement.put("batch", rs.getString("batch"));
                     jsonArray.add(jsonElement);
                     i++;
 
@@ -305,6 +342,6 @@ public class Student {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println( Student.getStudentsList().toJSONString());
+        System.out.println(Student.getStudentsList().toJSONString());
     }
 }

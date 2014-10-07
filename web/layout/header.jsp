@@ -70,7 +70,7 @@
                     <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         <%} else {
                         %>
-                    <li><a href="${pageContext.request.contextPath}<%=user.get("redirectURI")%>"><span class="glyphicon glyphicon-log-in"></span> <%=user.get("name")%></a></li>
+                    <li><a href="${pageContext.request.contextPath}/core/logout.jsp"><span class="glyphicon glyphicon-log-in"></span> <%=user.get("name")%></a></li>
                         <%
                                             }
                                         }%>
