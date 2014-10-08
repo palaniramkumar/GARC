@@ -217,41 +217,8 @@
 
                 <div class="panel-heading" ><span>Attendance</span><span class="close glyphicon glyphicon-remove-circle" onclick="$('#viewer').slideUp()"></span></div>
                 <div id="response">
-                    <table class="table table-bordered table-hover ">
-                        <thead>
-                            <%                    for (int i = 0; i < 31; i++) {
-                            %><th><%=i%></th><%
-                                }
-                            %>
-                        </thead>
-                        <%
-                            for (int i = 0; i < 6; i++) {
-                        %><tr><%
-                            for (int j = 0; j < 31; j++) {
-                            %><td>P</td><%
-                                }
-                            %></tr><%
-                                }
-                            %>
-                        <tr>
-
-                        </tr>
-                    </table>
-                    <p>Caption</p>
-                    <div>
-                        <span class="label label-default">BA7011</span>
-                        <span class="label label-primary">BA7012</span>
-                        <span class="label label-success">BA7013</span>
-                        <span class="label label-info">BA7015</span>
-                        <span class="label label-warning">BA7016</span>
-                        <span class="label label-danger">BA7017</span>
-                        <span class="label label-default">BA7018</span>
-                        <span class="label label-primary">BA7019</span>
-                        <span class="label label-success">BA7021</span>
-                        <span class="label label-info">BA7031</span>
-                        <span class="label label-warning">BA7041</span>
-                        <span class="label label-danger">BA7051</span>
-                    </div>
+                    
+                   
                 </div>
             </div>
         </div>
@@ -290,7 +257,7 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'courseoutline', '<%=subjectid%>')">Course Outline</a></li>
                                     <li role="presentation" class="divider"></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', '', '<%=subjectid%>')">Download Resource</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', '', '<%=subjectid%>')">View Attendance</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'detailedattendance', '<%=subjectid%>')">View Attendance</a></li>
 
                                 </ul>
                             </div>

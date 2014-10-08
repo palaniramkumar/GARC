@@ -12,6 +12,8 @@ function ajaxCall(url, div, field) {
                 $('#' + div).html("No Update");
                 return;
             }
+            alert(data)
+             $('#' + div).html(data); //added temp need to handle exception for below line
             var json = $.parseJSON(data);
 
             if (json.responsecode == "301") {

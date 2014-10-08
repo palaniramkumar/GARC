@@ -228,7 +228,7 @@ public class Student {
         String sql = "SELECT a.student_id,group_concat(s.subject_name order by hour) "
                 + "subject_name,group_concat(st.staff_name order by hour) staff_name,"
                 + "group_concat(a.hour order by hour) hour,group_concat(a.ab_type order by hour) ab_type, "
-                + "group_concat(a.subject_id order by hour) subject_id, date_format(date,'%b%e %Y ,%W') `date` FROM attendance a,staff st,subject s "
+                + "group_concat(a.subject_id order by hour) subject_id, date_format(date,'%b %e %Y, %W') `date`, date_format(date,'%e') `day` FROM attendance a,staff st,subject s "
                 + "where student_id= ? and month(date)=? "
                 + "and a.subject_id=s.subject_id and a.staff_id=st.staff_id group by date;";
         JSONObject json = new JSONObject();
@@ -246,6 +246,7 @@ public class Student {
                     JSONObject jsonElement = new JSONObject();
                     jsonElement.put("userId", rs.getString("student_id"));
                     jsonElement.put("date", rs.getString("date"));
+                    jsonElement.put("day",rs.getString("day"));
                     String[] hours = rs.getString("hour").split(",");
                     String[] subject_names = rs.getString("subject_name").split(",");
                     String[] staff_names = rs.getString("staff_name").split(",");
