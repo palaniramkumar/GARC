@@ -18,6 +18,7 @@ function ajaxCall(url, div, field) {
             }
             catch (err) {
                 $('#' + div).html(data);
+                $('[data-toggle="tooltip"]').tooltip();
                 return;
             }
 
@@ -55,9 +56,11 @@ function  validateUser(deployedURL) {
     ajaxCall(url, "response", null);
 
 }
-function getStudentReport(deployedURL, reportname, subjectid) {
+function getStudentReport(deployedURL, reportname, param) {
     uri = deployedURL;
-    var url = uri + "/core/student.jsp?action=" + reportname + "&subjectId=" + subjectid;
+    var url = uri + "/core/student.jsp?action=" + reportname + "&subjectId=" + param;
+    if(reportname == "detailedattendance")
+        url = uri + "/core/student.jsp?action=" + reportname + "&month=" + param;
     $('#response').html("Loading...");
     ajaxCall(url, "response", "data");
     $('#viewer').slideDown();

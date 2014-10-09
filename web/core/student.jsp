@@ -15,24 +15,21 @@
 <%@page import="org.garc.core.Subject"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%!
-    private String parseJson(JSONObject json, int day, int hour) {
-        String parsedValue = "-";
-
+    private JSONObject parseJson(JSONObject json, int day, int hour) {
         try {
 
             Iterator i = ((JSONArray) json.get("items")).iterator();
             // take each value from the json array separately
             while (i.hasNext()) {
                 JSONObject innerObj = (JSONObject) i.next();
-                 
+
                 if (innerObj.get("day").equals(day + "")) {
-                    
+
                     Iterator j = ((JSONArray) innerObj.get("daylist")).iterator();
                     while (j.hasNext()) {
                         JSONObject nestedObj = (JSONObject) j.next();
                         if (nestedObj.get("hour").equals(hour + "")) {
-                            parsedValue = nestedObj.get("ab_type").toString();
-                            break;
+                            return nestedObj;
                         }
                     }
                     break;
@@ -40,11 +37,9 @@
             }
 
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.print(json);
         }
-        //return ((JSONArray)json.get(day+"")) == null ?"0":((JSONArray)json.get(day+"")).size()+"";
-        return parsedValue + "";
+        return null;
     }
 %>
 <%
@@ -72,41 +67,46 @@
 
 
             /*constructing in table format*/
-            int monthInNumber = 9;
+            int monthInNumber = request.getParameter("month")==null || request.getParameter("month").equals("") 
+                    ?Calendar.getInstance().get(Calendar.MONTH):Integer.parseInt(request.getParameter("month"));
             DateFormatSymbols dfs = new DateFormatSymbols();
             String[] months = dfs.getMonths();
             String[] days = dfs.getWeekdays();
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.MONTH, monthInNumber);
             int maxDay = calendar.getActualMaximum(Calendar.DATE);
-            JSONObject json = new Student(user.get("id").toString(), user.get("section").toString(), user.get("semester").toString()).getDetailedAttendance(monthInNumber + "");
+            JSONObject json = new Student(user.get("id").toString(), user.get("section").toString(), user.get("semester").toString()).getDetailedAttendance(monthInNumber +1+ "");
 %>
-<select>
-    <% for (int i=0;i<months.length;i++){%>
-    <option value="<%=i%>"><%=months[i]%></option>
-    <%}%>
-</select>
-            <table class="table table-bordered table-hover ">
-                <thead>
-                <th>Day/<%=months[monthInNumber]%></th>
-                    <%for (int i = 1; i <= maxDay; i++) {
-                    %><th><%=i%></th><%
-                        }
-                    %>
-            </thead>
-            <%
-                for (int i = 2; i <= 7; i++) {
-            %><tr><td><%=days[i]%></td><%
-                for (int j = 1; j <= maxDay; j++) {
-                %><td><%=parseJson(json, j, i - 1)%></td><%
-                    }
-                %></tr><%
-                    }
-                %>
-            <tr>
 
-            </tr>
-            </table>
+<table class="table table-bordered table-striped ">
+    <thead>
+    <th><select onchange="getStudentReport('${pageContext.request.contextPath}', 'detailedattendance', $(this).val())">
+    <% for (int i = 0; i < months.length; i++) {%>
+    <option value="<%=i%>" <%=monthInNumber == i ? "selected":""%> ><%=months[i]%></option>
+    <%}%>
+</select></th>
+        <%for (int i = 1; i <= maxDay; i++) {
+        %><th><%=i%></th><%
+            }
+        %>
+</thead>
+<%
+    for (int i = 2; i <= 7; i++) {
+%><tr ><td><%=days[i]%></td><%
+    for (int j = 1; j <= maxDay; j++) {
+        JSONObject finder = parseJson(json, j, i - 1);
+        if (finder != null) {
+%><td data-toggle="tooltip" data-placement="top" data-container="body" title="<%=finder.get("subject_name")%> by <%=finder.get("staff_name")%>"  class="<%=finder.get("ab_type").equals("A")?"danger":""%>"><%=finder.get("ab_type")%></td><%
+        }
+        else
+        {
+            %><td>-</td><%
+        }
+    }
+    %></tr><%
+        }
+    %>
+</table>
 <%
         }
     }

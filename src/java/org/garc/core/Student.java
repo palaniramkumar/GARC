@@ -100,7 +100,7 @@ public class Student {
                 if (rs.next()) {
                     jsonElement = new JSONObject();
                     jsonElement.put("value", rs.getInt("leave") * 100 / total);
-                    jsonElement.put("label", "Applied Leave (" + rs.getInt("leave") + ")");
+                    jsonElement.put("label", "Approved Leave (" + rs.getInt("leave") + ")");
                     jsonArray.add(jsonElement);
                 }
             }

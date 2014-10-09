@@ -165,18 +165,15 @@
                     <li class="col-md-6 ">
                         <ul class="nav nav-pills panel">
 
-                            <li><a href="#"><span class="glyphicon glyphicon-inbox"></span> Messages</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-inbox"></span> Inbox</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-th-list"></span> Time Table </a></li>
-                            <li><a href="#" ><span class="glyphicon glyphicon-calendar"></span> Apply Leave</a></li>
+                            <li><a href="#" ><span class="glyphicon glyphicon-calendar"></span>Calender</a></li>
+                            <li><a href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'detailedattendance', '')"><span class="glyphicon glyphicon-heart"></span> Attendance</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle "  data-toggle="dropdown" href="#">
-                                    Reports <span class="caret"></span>
+                                    More <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Course Outline</a></li>
-                                    <li><a href="#">Course Planner</a></li>
-                                    <li><a href="#">Semester Planner</a></li>
-                                    <li><a href="#">My Attendance</a></li>
                                     <li><a href="#">Downloads</a></li>
                                 </ul>
                             </li>
@@ -205,7 +202,7 @@
                         <div class="thumbnail panel-google-plus">
 
                             <div id="graph" style="height: 150px"></div>
-                            <h3><center><span class="glyphicon glyphicon-ok"></span> Attendance %</center></h3>
+                            <center><button class="btn btn-danger" data-toggle="modal" data-target="#myModal" style="width: 100%"><span class="glyphicon glyphicon-calendar"></span> Apply Leave</button></center>
                         </div>
                     </li>
                 </ul>
@@ -256,8 +253,7 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'coursecoverage', '<%=subjectid%>')">Course Coverage</a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'courseoutline', '<%=subjectid%>')">Course Outline</a></li>
                                     <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', '', '<%=subjectid%>')">Download Resource</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'detailedattendance', '<%=subjectid%>')">View Attendance</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="../resources.jsp?subjectid=<%=subjectid%>" >Download Resource</a></li>
 
                                 </ul>
                             </div>
@@ -332,50 +328,17 @@
             </div>
         </div>
 
-        <div id="wrap" class="text-center">
-            <!-- Button trigger modal -->
-            <br>
-            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                Modal with blur effect
-            </button>
-        </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 text-center">
-                    <h1>Modal with blur effect</h1>
-                    <h2>Put here whatever you want here</h2>
-                    <h4>For instance, a login form or an article content</h4>
-                    <h4><kbd>esc</kbd> or click anyway to close</h4>
-                    <hr>
-                    <div class="alert alert-info"><h4>I can add a close button if you want.<br>Please, tell me in comments :)</h4></div>
-                </div>
+               
                 <div class="container">
                     <div class="panel panel-default">
 
                         <div class="panel-heading ">Attendance</div>
-                        <table class="table table-bordered table-hover ">
-                            <thead>
-                                <%                    for (int i = 0; i < 31; i++) {
-                                %><th><%=i%></th><%
-                                    }
-                                %>
-                            </thead>
-                            <%
-                                for (int i = 0; i < 6; i++) {
-                            %><tr><%
-                                for (int j = 0; j < 31; j++) {
-                                %><td>P</td><%
-                                    }
-                                %></tr><%
-                                    }
-                                %>
-                            <tr>
-
-                            </tr>
-                        </table>
+                        
                         <p>Caption</p>
                         <div>
                             <span class="label label-default">BA7011</span>
