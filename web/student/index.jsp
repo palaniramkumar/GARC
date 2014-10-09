@@ -136,6 +136,7 @@
                     user.get("semester").toString(), user.get("section").toString());
             JSONObject reportee = new Faculty().getClassIncharge(user.get("semester")
                     .toString(), user.get("section").toString());
+            JSONObject facultyInfo = Faculty.getFacultyinfo(getValueByKey(reportee, "staff_id", 0));
         %>
     <div id="page">
         <div class="container" >
@@ -191,7 +192,7 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Download Resource</a></li>
                                 </ul>
                             </div>
-                            <p><strong><span class="glyphicon glyphicon-user"></span>  Reportee: </strong> <a href='#'><%=getValueByKey(reportee, "title", 0)%> <%=getValueByKey(reportee, "name", 0)%></a> <%=getValueByKey(reportee, "qualification", 0)%>. </p>
+                            <p><strong><span class="glyphicon glyphicon-user"></span>  Reportee: </strong> <a href='#' data-container="body" data-toggle="popover" data-content='<center><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"  width="100" height="100" class="img-circle dp"><h5><%=facultyInfo.get("qualification")%></h5><h5></h5><%=facultyInfo.get("mailid")%><h5><%=facultyInfo.get("subjects_handled")%></h5></center>'><%=getValueByKey(reportee, "title", 0)%> <%=getValueByKey(reportee, "name", 0)%></a> <%=getValueByKey(reportee, "qualification", 0)%>. </p>
                             <p><strong><span class="glyphicon glyphicon-glass"></span>  Semester: </strong> <%=user.get("semester")%>, Section <%=user.get("section")%> </p>
                             <p><strong><span class="glyphicon glyphicon-time"></span> Last Login: </strong> <%=user.get("last_login_at")%>
                             <p><strong><span class="glyphicon glyphicon-heart"></span> Current Location: </strong>Chennai
@@ -242,7 +243,7 @@
                             String onduty = getValueByKey(attendanceSummary, "onduty", i);
                             String attended = getValueByKey(attendanceSummary, "attended", i);
                             String tooltipTxt = "total classes taken is " + getValueByKey(attendanceSummary, "attendance_taken", i) + " and you have attended the " + attended + " classes + " + onduty + " OD(s). Which is " + getValueByKey(attendanceSummary, "attendance_percentage", i) + "%";
-                            JSONObject facultyInfo = Faculty.getFacultyinfo(faculty.get("staff_id").toString());
+                            facultyInfo = Faculty.getFacultyinfo(faculty.get("staff_id").toString()); //reuse the exisitng variable declared in the top of the page
                     %>
                     <li class="col-md-3">
                         <div class="thumbnail panel-google-plus more" style="padding: 0">
@@ -361,7 +362,7 @@
                                        
                                         $(function() {
                                             $('[data-toggle="tooltip"]').tooltip();
-                                             $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top','html': true});
+                                             $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'bottom','html': true});
                                             $('.more').readmore({
                                                 speed: 75,
                                                 maxHeight: 325
