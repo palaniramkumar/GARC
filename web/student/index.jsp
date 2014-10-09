@@ -242,6 +242,7 @@
                             String onduty = getValueByKey(attendanceSummary, "onduty", i);
                             String attended = getValueByKey(attendanceSummary, "attended", i);
                             String tooltipTxt = "total classes taken is " + getValueByKey(attendanceSummary, "attendance_taken", i) + " and you have attended the " + attended + " classes + " + onduty + " OD(s). Which is " + getValueByKey(attendanceSummary, "attendance_percentage", i) + "%";
+                            JSONObject facultyInfo = Faculty.getFacultyinfo(faculty.get("staff_id").toString());
                     %>
                     <li class="col-md-3">
                         <div class="thumbnail panel-google-plus more" style="padding: 0">
@@ -261,11 +262,11 @@
 
                                 <h2><%=subjectid%> </h2>
                                 <p><%=getValueByKey(attendanceSummary, "subjectName", i)%>  </p>
-                                <p><i class="icon icon-map-marker"></i> by <a  data-container="body" data-toggle="popover" title="<%=faculty.get("staff_name")%>" href="../core/faculty.jsp?action=facultyinfo&facultyid=25" data-content="And here's some amazing content. It's very engaging. right?"><%=faculty.get("staff_name")%></a></p>
+                                <p><i class="icon icon-map-marker"></i> by <a  data-container="body" data-toggle="popover" title="<%=faculty.get("staff_name")%>"  data-content='<center><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"  width="100" height="100" class="img-circle dp"><h5><%=facultyInfo.get("qualification")%></h5><h5></h5><%=facultyInfo.get("mailid")%><h5><%=facultyInfo.get("subjects_handled")%></h5></center>'><%=faculty.get("staff_name")%></a></p>
                             </div>
                             <div class="modal-footer" style="text-align: left">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="<%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>%;" data-toggle="tooltip" data-placement="top" title="<%=tooltipTxt%>">
+                                    <div class="progress-bar" role="progressbar" data-container="body" aria-valuenow="<%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>%;" data-toggle="tooltip" data-placement="top" title="<%=tooltipTxt%>">
                                         <span class="sr-only"><%=getValueByKey(attendanceSummary, "attendance_percentage", i)%>% Complete</span>
                                     </div>
                                 </div>

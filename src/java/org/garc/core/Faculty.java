@@ -70,8 +70,8 @@ public class Faculty {
     }
 
     public static JSONObject getFacultyList() throws IOException {
-        String sql = "select staff_name,qualification,user_type,designation,subjects_handled,mailid,phone_number,staff_id,title  " +
-                     "from staff where user_type!='Admin' order by priority";
+        String sql = "select staff_name,qualification,user_type,designation,subjects_handled,mailid,phone_number,staff_id,title  "
+                + "from staff where user_type!='Admin' order by priority";
         JSONObject json = new JSONObject();
         List param = new ArrayList();
         DBObject dbObj = new DBObject();
@@ -114,35 +114,26 @@ public class Faculty {
         }
         return json;
     }
+
     public static JSONObject getFacultyinfo(String facultyID) throws IOException {
-        String sql = "select staff_name,qualification,user_type,designation,subjects_handled,mailid,phone_number,staff_id,title  " +
-                     "from staff where staff_id = ?";
+        String sql = "select staff_name,qualification,user_type,designation,subjects_handled,mailid,phone_number,staff_id,title  "
+                + "from staff where staff_id = ?";
         JSONObject json = new JSONObject();
         List param = new ArrayList();
         param.add(facultyID);
         DBObject dbObj = new DBObject();
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
-            JSONArray jsonArray = new JSONArray();
-            int i = 0;
             if (rs.next()) {
-                do {
-                    JSONObject jsonElement = new JSONObject();
-                    jsonElement.put("name", rs.getString("staff_name"));
-                    jsonElement.put("staff_id", rs.getString("staff_id"));
-                    jsonElement.put("qualification", rs.getString("qualification"));
-                    jsonElement.put("designation", rs.getString("designation"));
-                    jsonElement.put("subjects_handled", rs.getString("subjects_handled"));
-                    jsonElement.put("mailid", rs.getString("mailid"));
-                    jsonElement.put("phone_number", rs.getString("phone_number"));
-                    jsonElement.put("title", rs.getString("title"));
-                    jsonElement.put("user_type", rs.getString("user_type"));
-                    jsonArray.add(jsonElement);
-                    i++;
-
-                } while (rs.next());
-                json.put("items", jsonArray);
-                json.put("count", i);
+                json.put("name", rs.getString("staff_name"));
+                json.put("staff_id", rs.getString("staff_id"));
+                json.put("qualification", rs.getString("qualification"));
+                json.put("designation", rs.getString("designation"));
+                json.put("subjects_handled", rs.getString("subjects_handled"));
+                json.put("mailid", rs.getString("mailid"));
+                json.put("phone_number", rs.getString("phone_number"));
+                json.put("title", rs.getString("title"));
+                json.put("user_type", rs.getString("user_type"));
                 json.put("responsecode", "200");
             } else {
                 json.put("message", "Not Found");
@@ -160,9 +151,10 @@ public class Faculty {
         }
         return json;
     }
- public static void main(String[] args) throws Exception{
+
+    public static void main(String[] args) throws Exception {
         //System.out.println(new DBAuth().getCredential());
-       
-       System.out.println(new Faculty().getFacultyList().toJSONString());
+
+        System.out.println(new Faculty().getFacultyList().toJSONString());
     }
 }
