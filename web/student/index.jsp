@@ -214,8 +214,8 @@
 
                 <div class="panel-heading" ><span>Attendance</span><span class="close glyphicon glyphicon-remove-circle" onclick="$('#viewer').slideUp()"></span></div>
                 <div id="response">
-                    
-                   
+
+
                 </div>
             </div>
         </div>
@@ -223,7 +223,7 @@
             <div class="row">
                 <ul class="thumbnails list-unstyled">
                     <%
-                        JSONObject leaveSummary = me.getLeaveSummary();    
+                        JSONObject leaveSummary = me.getLeaveSummary();
                         JSONObject attendanceSummary = me.getAttendanceSummary();
                         final String[] theme = {"success", "info", "warning", "danger"};
                         int count = Integer.parseInt(attendanceSummary.get("count").toString());
@@ -239,9 +239,9 @@
                             }
                             JSONObject faculty = (JSONObject) ((JSONArray) assigenedFaculty.get("items")).get(j);
                             String subjectid = getValueByKey(attendanceSummary, "subjectId", i);
-                            String onduty=getValueByKey(attendanceSummary, "onduty", i);
+                            String onduty = getValueByKey(attendanceSummary, "onduty", i);
                             String attended = getValueByKey(attendanceSummary, "attended", i);
-                            String tooltipTxt = "total classes taken is "+getValueByKey(attendanceSummary, "attendance_taken", i)+" and you have attended the "+attended+" classes + "+onduty+" OD(s). Which is "+ getValueByKey(attendanceSummary, "attendance_percentage", i)+"%";
+                            String tooltipTxt = "total classes taken is " + getValueByKey(attendanceSummary, "attendance_taken", i) + " and you have attended the " + attended + " classes + " + onduty + " OD(s). Which is " + getValueByKey(attendanceSummary, "attendance_percentage", i) + "%";
                     %>
                     <li class="col-md-3">
                         <div class="thumbnail panel-google-plus more" style="padding: 0">
@@ -261,7 +261,7 @@
 
                                 <h2><%=subjectid%> </h2>
                                 <p><%=getValueByKey(attendanceSummary, "subjectName", i)%>  </p>
-                                <p><i class="icon icon-map-marker"></i> by <a href='#' ><%=faculty.get("staff_name")%></a></p>
+                                <p><i class="icon icon-map-marker"></i> by <a  data-container="body" data-toggle="popover" title="<%=faculty.get("staff_name")%>" href="../core/faculty.jsp?action=facultyinfo&facultyid=25" data-content="And here's some amazing content. It's very engaging. right?"><%=faculty.get("staff_name")%></a></p>
                             </div>
                             <div class="modal-footer" style="text-align: left">
                                 <div class="progress">
@@ -271,7 +271,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4"><b><%=attended%></b><br/><small>PRESENT</small></div>
-                                    <div class="col-md-4"><b><a href="#" data-toggle="tooltip" data-placement="top" title="<%=leaveSummary.get(subjectid+"_summary")%>"><%=leaveSummary.get(subjectid)==null?0:leaveSummary.get(subjectid)%></a></b><br/><small>LEAVE</small></div>
+                                    <div class="col-md-4"><b><a href="#" data-toggle="tooltip" data-placement="top" title="<%=leaveSummary.get(subjectid + "_summary")%>"><%=leaveSummary.get(subjectid) == null ? 0 : leaveSummary.get(subjectid)%></a></b><br/><small>LEAVE</small></div>
                                     <div class="col-md-4"><b><%=onduty%> </b><br/><small>OD</small></div>
                                 </div>
 
@@ -281,15 +281,14 @@
                                 String testMarks = getValueByKey(marks, "mark", j);
                                 String maxMarks = getValueByKey(marks, "maxMarks", j);
                                 String weightage = getValueByKey(marks, "weightage", j);
-                                tooltipTxt ="";
+                                tooltipTxt = "";
                                 String percent = "0";
-                                try{
-                                    percent=""+(int)(Integer.parseInt(testMarks)*100 / Integer.parseInt(maxMarks));
-                                    tooltipTxt = "You have scored "+percent+"% ("+testMarks+") in "+getValueByKey(marks, "examname", j);
-                                }
-                                catch(NumberFormatException e){
+                                try {
+                                    percent = "" + (int) (Integer.parseInt(testMarks) * 100 / Integer.parseInt(maxMarks));
+                                    tooltipTxt = "You have scored " + percent + "% (" + testMarks + ") in " + getValueByKey(marks, "examname", j);
+                                } catch (NumberFormatException e) {
                                     //out.print(marks);
-                                    tooltipTxt = "The "+getValueByKey(marks, "examname", j)+" Scheduled on "+getValueByKey(marks, "examdate", j);
+                                    tooltipTxt = "The " + getValueByKey(marks, "examname", j) + " Scheduled on " + getValueByKey(marks, "examdate", j);
                                 }
                             %>
                             <div class="modal-footer " style="text-align: left">
@@ -297,7 +296,7 @@
                                         for (j = 0; j < Integer.parseInt(marks.get("count").toString()); j++) {%>                              
 
                                 <div class="progress">
-                                    <div data-percentage="0%" style="width: <%=percent%>%;" class="progress-bar progress-bar-<%=theme[j % 4]%>" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="<%=percent.equals("0")?"right":"top"%>" title="<%=tooltipTxt%>">
+                                    <div data-percentage="0%" style="width: <%=percent%>%;" class="progress-bar progress-bar-<%=theme[j % 4]%>" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="<%=percent.equals("0") ? "right" : "top"%>" title="<%=tooltipTxt%>">
                                         <span class="sr-only"><%=percent%>% Complete</span>
                                         <span class="progress-type"><%=getValueByKey(marks, "examname", j)%></span>
 
@@ -331,23 +330,23 @@
     </div>
     <!-- Modal -->
     <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
     <%@ include file="../layout/footer.jsp" %>
@@ -358,8 +357,10 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
     <link rel="stylesheet" href="../css/morris.css">
     <script>
+                                       
                                         $(function() {
                                             $('[data-toggle="tooltip"]').tooltip();
+                                             $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'top','html': true});
                                             $('.more').readmore({
                                                 speed: 75,
                                                 maxHeight: 325
@@ -370,7 +371,7 @@
                                                     type: "post", url: "${pageContext.request.contextPath}/core/student.jsp?action=attendancepie",
                                                     success: function(data, text) {
                                                         var json = $.parseJSON(data);
-                                                        
+
                                                         var val = Morris.Donut({
                                                             element: 'graph',
                                                             data: json["items"],
