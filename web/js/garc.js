@@ -8,13 +8,18 @@ function ajaxCall(url, div, field) {
     $.ajax({
         type: "post", url: url,
         success: function(data, text) {
-            if($.trim(data)== "" || data == null){
+            if ($.trim(data) == "" || data == null) {
                 $('#' + div).html("No Update");
                 return;
             }
-            alert(data)
-             $('#' + div).html(data); //added temp need to handle exception for below line
-            var json = $.parseJSON(data);
+            var json;
+            try {
+                json = $.parseJSON(data);
+            }
+            catch (err) {
+                $('#' + div).html(data);
+                return;
+            }
 
             if (json.responsecode == "301") {
                 window.location = uri + json.redirectURI;
@@ -42,7 +47,7 @@ function ajaxCall(url, div, field) {
 }
 
 function  validateUser(deployedURL) {
-    uri=deployedURL;
+    uri = deployedURL;
     var user = $('#login-username').val();
     var pass = $('#login-password').val();
     var url = uri + "/core/login.jsp?username=" + user + "&password=" + pass;
@@ -51,7 +56,7 @@ function  validateUser(deployedURL) {
 
 }
 function getStudentReport(deployedURL, reportname, subjectid) {
-    uri=deployedURL;
+    uri = deployedURL;
     var url = uri + "/core/student.jsp?action=" + reportname + "&subjectId=" + subjectid;
     $('#response').html("Loading...");
     ajaxCall(url, "response", "data");
