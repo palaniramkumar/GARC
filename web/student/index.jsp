@@ -261,7 +261,7 @@
 
                                 <h2><%=subjectid%> </h2>
                                 <p><%=getValueByKey(attendanceSummary, "subjectName", i)%>  </p>
-                                <p><i class="icon icon-map-marker"></i> by <a href='#'><%=faculty.get("staff_name")%></a></p>
+                                <p><i class="icon icon-map-marker"></i> by <a href='#' ><%=faculty.get("staff_name")%></a></p>
                             </div>
                             <div class="modal-footer" style="text-align: left">
                                 <div class="progress">
@@ -271,7 +271,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4"><b><%=attended%></b><br/><small>PRESENT</small></div>
-                                    <div class="col-md-4"><b><%=leaveSummary.get(subjectid)==null?0:leaveSummary.get(subjectid)%></b><br/><small>LEAVE</small></div>
+                                    <div class="col-md-4"><b><a href="#" data-toggle="tooltip" data-placement="top" title="<%=leaveSummary.get(subjectid+"_summary")%>"><%=leaveSummary.get(subjectid)==null?0:leaveSummary.get(subjectid)%></a></b><br/><small>LEAVE</small></div>
                                     <div class="col-md-4"><b><%=onduty%> </b><br/><small>OD</small></div>
                                 </div>
 
@@ -330,36 +330,24 @@
 
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="container">
-            <div class="row">
-               
-                <div class="container">
-                    <div class="panel panel-default">
-
-                        <div class="panel-heading ">Attendance</div>
-                        
-                        <p>Caption</p>
-                        <div>
-                            <span class="label label-default">BA7011</span>
-                            <span class="label label-primary">BA7012</span>
-                            <span class="label label-success">BA7013</span>
-                            <span class="label label-info">BA7015</span>
-                            <span class="label label-warning">BA7016</span>
-                            <span class="label label-danger">BA7017</span>
-                            <span class="label label-default">BA7018</span>
-                            <span class="label label-primary">BA7019</span>
-                            <span class="label label-success">BA7021</span>
-                            <span class="label label-info">BA7031</span>
-                            <span class="label label-warning">BA7041</span>
-                            <span class="label label-danger">BA7051</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
+  </div>
+</div>
 
 
     <%@ include file="../layout/footer.jsp" %>

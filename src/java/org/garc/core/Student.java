@@ -34,7 +34,7 @@ public class Student {
     }
 
     public JSONObject getLeaveSummary() throws IOException {
-        String sql = "SELECT a.student_id, a.subject_id,  count(a.subject_id) count FROM leaveinfo l , attendance a "
+        String sql = "SELECT a.student_id, a.subject_id,  count(a.subject_id) count,group_concat(concat(l.hour,' hour on ',date_format(l.date,'%d/%m/%Y'))) summary  FROM leaveinfo l , attendance a "
                 + "where l.student_id = ?  and a.ab_type = 'A' "
                 + "and a.student_id = l.student_id and l.date = a.date and l.hour = a.hour group by a.subject_id";
         List param = new ArrayList();
@@ -48,6 +48,7 @@ public class Student {
                 json.put("student_id", rs.getString("student_id"));
                 do {
                     json.put(rs.getString("subject_id"), rs.getInt("count"));
+                    json.put(rs.getString("subject_id")+"_summary", rs.getString("summary"));
                     total+=rs.getInt("count");
                 } while (rs.next());                
                 json.put("total", total);
