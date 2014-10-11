@@ -38,7 +38,7 @@
         %>
        
         <div class="col-lg-4" style="height: 150px;">
-                <div class="media ">
+                <div class="panel ">
                     <a class="pull-left" href="#">
                         <img class="media-object dp img-circle" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" style="width: 100px;height:100px;">
                     </a>

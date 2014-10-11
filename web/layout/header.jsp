@@ -7,12 +7,13 @@
 <%@page import="org.json.simple.JSONObject"%>
 <link rel='stylesheet prefetch' href='${pageContext.request.contextPath}/css/grid.css'>
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-<link rel='stylesheet prefetch' href='${pageContext.request.contextPath}/css/flexslider.css'>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.org.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/material.min.css" rel="stylesheet">
+<!--link rel='stylesheet prefetch' href='${pageContext.request.contextPath}/css/flexslider.css'-->
 <link rel='stylesheet prefetch' href='${pageContext.request.contextPath}/css/icomoon-uikit-feb.css'>
 <script src="${pageContext.request.contextPath}/js/prefixfree.min.js"></script>        
 <script src='${pageContext.request.contextPath}/js/jquery.js'></script>
-<script src='${pageContext.request.contextPath}/js/jquery.flexslider-min.js'></script>
+<!--script src='${pageContext.request.contextPath}/js/jquery.flexslider-min.js'></script-->
 <script src='${pageContext.request.contextPath}/js/bootstrap.min.js'></script>
 <script src="${pageContext.request.contextPath}/js/index.js"></script>
 <script src="${pageContext.request.contextPath}/js/garc.js"></script>
@@ -20,7 +21,7 @@
 <body>
 
     <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">

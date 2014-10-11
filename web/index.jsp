@@ -15,12 +15,12 @@
             <div class="grid_12 heading">
                 <h3>We give you powerful free tools to help you educate the world</h3>
             </div>
-            <div class="grid_12">
+            <div >
                 <article class="post post-blog">
                     <a href="#" class="post-image">
-                        <img src="${pageContext.request.contextPath}/img/bg_img2.jpg"  width="960"/>
+                        <img src="${pageContext.request.contextPath}/img/bg_img2.jpg"  width="100%"/>
                     </a>
-                    <div class="details">
+                    <div class="well">
                         <h2><a href="#">Welcome to Graduate Academic Resource Center (GARC).</a></h2>
                         <div class="meta">
                             <p>Written by <strong>Admin</strong> <span class="verified"></span></p>
@@ -28,8 +28,8 @@
                         <p>Recognizing that currently multiple dissimilar repositories exist at SoMCA to share, transfer and maintain academic information, course material, course management review and realizing the need to use IT based solution to deal with this situation, GARC has evolved. <br />___<br />
                             <br />P.S The code or enhancement is always welcome, please contact me if you're interested.</p>
                         <div class="btn-group" data-grouptype="OR">
-                            <button class="btn btn-tertiary" onclick="window.location='${pageContext.request.contextPath}/login.jsp'">Login Now</button>
-                            <button class="btn btn-success " onclick="window.location='http://github.com/palaniramkumar/GARC'">Download</button>
+                            <button class="btn btn-success" onclick="window.location='${pageContext.request.contextPath}/login.jsp'">Login Now</button>
+                            <button class="btn btn-flat btn-warning " onclick="window.location='http://github.com/palaniramkumar/GARC'">Download</button>
                         </div>
                         <div class="intents">
                             <span class="icon icon-heart"></span>
@@ -40,7 +40,7 @@
                     </div>
                 </article> 
             </div>
-            <div class="grid_12">
+                            <div class="well" >
                 <div class="heading">
                     <h3>News</h3>
                 </div>     
@@ -63,7 +63,7 @@
             </div>
 
 
-            <div class="grid_6">
+            <div class="grid_7 well">
                 <section class="widget twitter">
                     <header class="header header-tertiary">
                         <h3>Dont's</h3>
@@ -110,12 +110,15 @@
                     </article>
                 </section>
             </div>
-            <div class="grid_6">
+            <div class="grid_7 well">
                 <section class="widget storage">
                     <header class="header header-quaternary">
                         <h3>Do's</h3>
                         <div class="background-icon"><span class="icon-checkmark"></span></div>
                     </header>
+                     <div class="actions">
+                        <a href="#" class="btn btn-quaternary btn-round"><span class="icon-star"></span></a>
+                    </div>
                     <article>
                         <ul>
                             <li class="active">
