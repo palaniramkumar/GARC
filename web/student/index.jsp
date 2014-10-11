@@ -165,9 +165,6 @@
 
                     <li class="col-md-6 ">
                         <ul class="nav nav-pills panel">
-
-                            <li><a href="#"><span class="glyphicon glyphicon-inbox"></span> Inbox</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-th-list"></span> Time Table </a></li>
                             <li><a href="#" ><span class="glyphicon glyphicon-calendar"></span>Calender</a></li>
                             <li><a href="#" onclick="getStudentReport('${pageContext.request.contextPath}', 'detailedattendance', '')"><span class="glyphicon glyphicon-heart"></span> Attendance</a></li>
                             <li class="dropdown">

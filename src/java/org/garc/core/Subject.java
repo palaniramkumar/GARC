@@ -199,10 +199,6 @@ public class Subject {
         return json;
     }
 
-    private void getAttendanceLists() {
-
-    }
-
     public JSONObject getFaculties(String subjectId) throws IOException {
         String sql = "select x.subject_id,x.subject_name, elective, group_concat(s.staff_id) staff_id, "
                 + "group_concat(s.staff_name) staff_name, group_concat(a.section) section from assign_staff a , "
@@ -220,11 +216,11 @@ public class Subject {
                 json.put("subject_id", rs.getString("subject_id"));
                 json.put("subject_name", rs.getString("subject_name"));
                 json.put("elective", rs.getString("elective"));
-                String [] staffId = rs.getString("staff_id").split(",");
-                String [] staffName = rs.getString("staff_name").split(",");
-                String [] section = rs.getString("section").split(",");
-                int i=0;
-                for (;i<staffId.length;i++){
+                String[] staffId = rs.getString("staff_id").split(",");
+                String[] staffName = rs.getString("staff_name").split(",");
+                String[] section = rs.getString("section").split(",");
+                int i = 0;
+                for (; i < staffId.length; i++) {
                     JSONObject jsonElement = new JSONObject();
                     jsonElement.put("staff_id", staffId[i]);
                     jsonElement.put("staff_name", staffName[i]);
@@ -252,10 +248,19 @@ public class Subject {
         return json;
     }
 
+    private void getResourceDownloadList() {
+
+    }
+
     private void getQuestionBanks() {
 
     }
-     public static void main(String[] args) throws IOException {
+
+    private void getAttendanceLists() {
+
+    }
+
+    public static void main(String[] args) throws IOException {
         System.out.println(new Subject().getFaculties("BA 7104"));
     }
 
