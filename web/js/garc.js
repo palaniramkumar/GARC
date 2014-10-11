@@ -65,3 +65,8 @@ function getStudentReport(deployedURL, reportname, param) {
     ajaxCall(url, "response", "data");
     $('#viewer').slideDown();
 }
+function getDownloadableResource(deployedURL,subject_id){
+     uri = deployedURL;
+    var url = uri + "/core/subject.jsp?action=getalldownloadableresource&subject_id="+subject_id;
+     ajaxCall(url, "response", null);
+}

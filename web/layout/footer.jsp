@@ -10,7 +10,7 @@
     <div class="container" >
         <p class="navbar-text" style="text-align: center;width: 100%">Visitor Number: <%= new misc().getHitCount(session.isNew()).get("count") %>
                 
-            | Copyright 2008-<%=Calendar.getInstance().get(Calendar.YEAR)%> GARC</p>
+            | &copy; <%=Calendar.getInstance().get(Calendar.YEAR)%> GARC Team</p>
         
     </div>
 </nav>

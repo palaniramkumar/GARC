@@ -4,6 +4,9 @@
     Author     : Ramkumar
 --%>
 
+<%@page import="org.garc.core.Subject"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,102 +16,55 @@
         <%@ include file="layout/header.jsp" %>
     <div class="container page">
         <div class="row">
-        <div class="list-group col-xs-4">
-            <div class="list-group-item ">
-                <div class="row-picture">
-                    <h1><span class="glyphicon glyphicon-calendar"></span></h1>
+            <div class="list-group col-xs-11">
+                <div class="list-group-item ">
+                    <div class="row-picture">
+                        <h1><span class="glyphicon glyphicon-book"></span></h1>
+                    </div>
+                    <div class="row-content">
+                        <h4 class="list-group-item-heading">Subject Name</h4>
+                        <select class="form-control" id="subject">
+                            
+                            <%
+                                String subject_id = "0";
+                                if (request.getParameter("subjectid") != null) {
+                                    subject_id = request.getParameter("subjectid").toString();
+                                }
+                                JSONObject json = Subject.getAllSubjectName();
+                                %><option value = "<%=subject_id%>">Please Select</option><%
+                                for (int i = 0; i < Integer.parseInt(json.get("count").toString()); i++) {
+                                    JSONObject tuple = ((JSONObject) ((JSONArray) json.get("items")).get(i));
+                            %>
+                            <option value="<%=tuple.get("subject_id")%>"><%=tuple.get("subject_name")%></option>
+                            <%}%>                            
+                        </select>
+                    </div>
                 </div>
-                <div class="row-content">
-                    <h4 class="list-group-item-heading">Year</h4>
-                    <select class="form-control">
-                        <option>welcome</option>
-                        <option>Demo</option>
-                    </select>
-                </div>
+
+                <div class="list-group-separator"></div>
             </div>
 
-            <div class="list-group-separator"></div>
-        </div>
-        <div class="list-group col-xs-4">
-            <div class="list-group-item ">
-                <div class="row-picture">
-                    <h1><span class="glyphicon glyphicon-calendar"></span></h1>
-                </div>
-                <div class="row-content">
-                    <h4 class="list-group-item-heading">Subject</h4>
-                    <select class="form-control">
-                        <option>welcome</option>
-                        <option>Demo</option>
-                    </select>
-                </div>
+            <div class="list-group col-xs-1">
+                <a href="javascript:void(0)"  onclick="getDownloadableResource('${pageContext.request.contextPath}', $('#subject').val())" class="btn btn-info btn-fab btn-raised"> <span class="glyphicon glyphicon-list"></span> </a>
             </div>
-
-            <div class="list-group-separator"></div>
-        </div>
-        <div class="list-group col-xs-4">
-            <div class="list-group-item ">
-                <div class="row-picture">
-                    <h1><span class="glyphicon glyphicon-calendar"></span></h1>
-                </div>
-                <div class="row-content">
-                    <h4 class="list-group-item-heading">Section</h4>
-                    <select class="form-control">
-                        <option>Both</option>
-                        <option>Demo</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="list-group-separator"></div>
-        </div>
         </div>
         <div class="alert alert-dismissable alert-warning">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>Warning!</h4>
-            <p>You are in the launch page, Please select any of the above option to  <a href="javascript:void(0)" class="alert-link">download </a> the resource.</p>
+            <p>Please select any of the above option to  <a href="javascript:void(0)" class="alert-link">download </a> the resource.</p>
         </div>
-        <div class="well">
-            No files to download
-        
-        <div class="list-group">
-    <div class="list-group-item">
-        <div class="row-action-primary">
-            <i class="icon-material-folder"></i>
-        </div>
-        <div class="row-content">
-            <div class="least-content">15m</div>
-            <h4 class="list-group-item-heading">Tile with a label</h4>
-            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>
-        </div>
-    </div>
-    <div class="list-group-separator"></div>
-    <div class="list-group-item">
-        <div class="row-action-primary">
-            <i class="icon-material-folder"></i>
-        </div>
-        <div class="row-content">
-            <div class="least-content">10m</div>
-            <h4 class="list-group-item-heading">Tile with a label</h4>
-            <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-        </div>
-    </div>
-    <div class="list-group-separator"></div>
-    <div class="list-group-item">
-        <div class="row-action-primary">
-            <i class="icon-material-folder"></i>
-        </div>
-        <div class="row-content">
-            <div class="least-content">8m</div>
-            <h4 class="list-group-item-heading">Tile with a label</h4>
-            <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-        </div>
-    </div>
-    <div class="list-group-separator"></div>
-</div>
+        <div class="well" id="response" style="padding: 0px">
+
+            <p class="well" >Choose your subject</p>
+
         </div>
 
     </div>
     <%@ include file="layout/footer.jsp" %>
+    <script>
+        //        String subject_id ="0";
+        getDownloadableResource('${pageContext.request.contextPath}', $('#subject').val())
+    </script>
 </body>
 
 </html>

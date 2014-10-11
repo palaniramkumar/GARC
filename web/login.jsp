@@ -39,7 +39,7 @@
                         <div style="margin-top:10px" class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls " style="text-align: right" >
-                                <a id="btn-login" href="#" class="btn btn-large btn-warning  " onclick="validateUser('${pageContext.request.contextPath}')">Login  </a>
+                                <a id="btn-login" href="#" class="btn btn-large btn-warning  " onclick="validateUser('${pageContext.request.contextPath}')">Login  </a><a id="btn-login" href="#" class="btn btn-large btn-primary  " onclick="validateUser('${pageContext.request.contextPath}')">Login with Google  </a>
                             </div>
                         </div>
                             <div id="response">
