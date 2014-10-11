@@ -27,9 +27,9 @@
                         </div>
                         <p>Recognizing that currently multiple dissimilar repositories exist at SoMCA to share, transfer and maintain academic information, course material, course management review and realizing the need to use IT based solution to deal with this situation, GARC has evolved. <br />___<br />
                             <br />P.S The code or enhancement is always welcome, please contact me if you're interested.</p>
-                        <div class="btn-group" data-grouptype="OR">
-                            <button class="btn btn-success" onclick="window.location='${pageContext.request.contextPath}/login.jsp'">Login Now</button>
-                            <button class="btn btn-flat btn-warning " onclick="window.location='http://github.com/palaniramkumar/GARC'">Download</button>
+                        <div class="btn-group">
+                            <a class="btn btn-success" onclick="window.location='${pageContext.request.contextPath}/login.jsp'">Login Now</a>
+                            <a class="btn btn-warning " onclick="window.location='http://github.com/palaniramkumar/GARC'">Download</a>
                         </div>
                         <div class="intents">
                             <span class="icon icon-heart"></span>
@@ -63,14 +63,14 @@
             </div>
 
 
-            <div class="grid_7 well">
+                            <div class="grid_7 well" style="padding: 0px">
                 <section class="widget twitter">
                     <header class="header header-tertiary">
                         <h3>Dont's</h3>
                         <div class="background-icon"><span class="icon-cross"></span></div>
                     </header>
                     <div class="actions">
-                        <a href="#" class="btn btn-tertiary btn-round"><span class="icon-star"></span></a>
+                        <a href="#" class="btn btn-danger btn-round"><span class="icon-star"></span></a>
                     </div>
                     <article>
                         <ul>
@@ -110,14 +110,14 @@
                     </article>
                 </section>
             </div>
-            <div class="grid_7 well">
+            <div class="grid_7 well" style="padding: 0px">
                 <section class="widget storage">
                     <header class="header header-quaternary">
                         <h3>Do's</h3>
                         <div class="background-icon"><span class="icon-checkmark"></span></div>
                     </header>
                      <div class="actions">
-                        <a href="#" class="btn btn-quaternary btn-round"><span class="icon-star"></span></a>
+                        <a href="#" class="btn btn-success btn-round"><span class="icon-star"></span></a>
                     </div>
                     <article>
                         <ul>

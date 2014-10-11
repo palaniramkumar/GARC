@@ -9,14 +9,16 @@
 <!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.org.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/material.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/ripples.min.css" rel="stylesheet">
 <!--link rel='stylesheet prefetch' href='${pageContext.request.contextPath}/css/flexslider.css'-->
 <link rel='stylesheet prefetch' href='${pageContext.request.contextPath}/css/icomoon-uikit-feb.css'>
 <script src="${pageContext.request.contextPath}/js/prefixfree.min.js"></script>        
 <script src='${pageContext.request.contextPath}/js/jquery.js'></script>
 <!--script src='${pageContext.request.contextPath}/js/jquery.flexslider-min.js'></script-->
 <script src='${pageContext.request.contextPath}/js/bootstrap.min.js'></script>
-<script src="${pageContext.request.contextPath}/js/index.js"></script>
 <script src="${pageContext.request.contextPath}/js/garc.js"></script>
+<script src="${pageContext.request.contextPath}/js/ripples.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/material.min.js"></script>
 </head>
 <body>
 

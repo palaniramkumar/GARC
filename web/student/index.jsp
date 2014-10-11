@@ -263,7 +263,7 @@
 
                                 <h2><%=subjectid%> </h2>
                                 <p><%=getValueByKey(attendanceSummary, "subjectName", i)%>  </p>
-                                <p><i class="icon icon-map-marker"></i> by <a  data-container="body" data-toggle="popover" title="<%=faculty.get("staff_name")%>"  data-content='<center><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"  width="100" height="100" class="img-circle dp"><h5><%=facultyInfo.get("qualification")%></h5><h5></h5><%=facultyInfo.get("mailid")%><h5><%=facultyInfo.get("subjects_handled")%></h5></center>'><%=faculty.get("staff_name")%></a></p>
+                                <p><i class="icon icon-map-marker"></i> by <a  data-container="body" data-toggle="popover"  data-content='<center><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"  width="100" height="100" class="img-circle dp"><h5><%=faculty.get("staff_name")%> <%=facultyInfo.get("qualification")%></h5><h5></h5><%=facultyInfo.get("mailid")%><h5><%=facultyInfo.get("subjects_handled")%></h5></center>'><%=faculty.get("staff_name")%></a></p>
                             </div>
                             <div class="modal-footer" style="text-align: left">
                                 <div class="progress">
