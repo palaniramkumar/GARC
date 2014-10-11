@@ -13,7 +13,7 @@
 
 
             <div class="grid_12 heading">
-                <h3>We give you powerful free tools to help you educate the world</h3>
+                <h3>We give you powerful opensource tools to help you educate the world</h3>
             </div>
             <div >
                 <article class="post post-blog">

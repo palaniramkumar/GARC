@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}">GARC 4.0 <sup>&beta;eta</sup></a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}">GARC 4.0 <sup>Pre-&alpha;lpha</sup></a>
                 <p class="navbar-text navbar-left"><small> for MCA Department</small></p>
             </div>
             <%
@@ -45,6 +45,7 @@
                     <li <%=pageName.equals("students.jsp") ? "class='active'" : ""%>><a href="${pageContext.request.contextPath}/students.jsp"><span class="glyphicon glyphicon-user"></span> Students</a></li>
                     <li <%=pageName.equals("faculties.jsp") ? "class='active'" : ""%>><a href="${pageContext.request.contextPath}/faculties.jsp"><span class="glyphicon glyphicon-bookmark   "></span> Faculties</a></li>
                     <li <%=pageName.equals("resources.jsp") ? "class='active'" : ""%>><a href="${pageContext.request.contextPath}/resources.jsp"><span class="glyphicon glyphicon-download"></span> Resource</a></li>
+                    <li><a href="${pageContext.request.contextPath}/resources.jsp"><span class="glyphicon glyphicon-star"></span> Whats New</a></li>
                     <!--li <%=pageName.equals("articles.jsp") ? "class='active'" : ""%>><a href="${pageContext.request.contextPath}/articles.jsp"><span class="glyphicon glyphicon-book"></span> Article</a></li-->
 
 
