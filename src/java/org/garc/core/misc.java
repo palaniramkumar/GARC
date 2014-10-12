@@ -6,11 +6,15 @@
 package org.garc.core;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.garc.config.DBObject;
 import org.garc.oauth.UserInfo;
 import org.json.simple.JSONArray;
@@ -55,5 +59,21 @@ public class misc {
             Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return json;
+    }
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        String password = "demo";
+        System.out.println("MD5 in hex: " + MySQLPassword(password));
+    }
+    public static String MySQLPassword(String plainText) throws UnsupportedEncodingException {
+        byte[] utf8 = plainText.getBytes("UTF-8");
+        return "*" + DigestUtils.shaHex(DigestUtils.sha(utf8)).toUpperCase();
+    }
+    public static  String getNow(){
+        Date now = new Date();
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        String mysqlDateString = formatter.format(now);
+        //System.out.println("Java's Default Date Format: " + now);
+        return  mysqlDateString;
     }
 }

@@ -9,11 +9,13 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.garc.config.DBObject;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
@@ -21,7 +23,8 @@ import org.json.simple.JSONObject;
  * @author Ramkumar
  */
 public class UserInfo {
-
+    public final static  String FACULTY="staff";
+    public final static  String STUDENT="student";
     public JSONObject getAuthToken(String username, String password) throws IOException {
         DBObject dbObj = new DBObject();
         JSONObject json = new JSONObject();
@@ -45,7 +48,7 @@ public class UserInfo {
                 json.put("responsecode", "301");
                 json.put("message", "Credentials Valid");
             } else {
-                sql="select student_name,username,semester,section,student_id, DATE_FORMAT(day, '%W %d,%M %Y') ,DATE_FORMAT(day, '%r') last_login_at,isattend from students where username= ? and pass=password(?)";
+                sql = "select student_name,username,semester,section,student_id, DATE_FORMAT(day, '%W %d,%M %Y') ,DATE_FORMAT(day, '%r') last_login_at,isattend from students where username= ? and pass=password(?)";
                 result = dbObj.getDbResultSet(sql, param);
                 if (result.next()) {
                     json.put("id", result.getString("student_id"));
@@ -76,4 +79,37 @@ public class UserInfo {
         }
         return json;
     }
+
+    public JSONObject updateUserField(String usertype, String field, String value, String id) throws IOException {
+        String conditionElement="staff_id";
+        String tableName="staff";
+        if(usertype.toLowerCase().contains(STUDENT)){
+            conditionElement="student_id";
+            tableName="students";
+        }
+        String sql = "update "+tableName +" set "+ field+" = ? where "+ conditionElement +" = ?";
+        JSONObject json = new JSONObject();
+        DBObject dbObj = new DBObject();
+        try {
+            List param = new ArrayList();
+            param.add(value);
+            param.add(id);
+            int record = dbObj.executeUpdate(sql, param);            
+            json.put("records",record);
+            json.put("responsecode", "200");
+
+        } catch (Exception e) {
+            json.put("responsecode", "500");
+            json.put("message", e.toString());
+            e.printStackTrace();
+        }
+
+        try {
+            dbObj.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return json;
+    }
+
 }

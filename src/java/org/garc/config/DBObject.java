@@ -96,6 +96,16 @@ public class DBObject {
         this.rs = stmt.executeQuery();
         return rs;
     }
+    public int executeUpdate(String sql,List param) throws ClassNotFoundException, SQLException {
+        if (stmt!=null)stmt.close();
+        stmt = getDbConection().prepareStatement(sql);
+        
+        for(int i=0;i<param.size();i++)
+            stmt.setString(i+1, param.get(i).toString());
+        //System.out.println(stmt);
+        int recordcount = stmt.executeUpdate();
+        return recordcount;
+    }
     
     public void close() throws SQLException{
         if (rs!=null)rs.close();
