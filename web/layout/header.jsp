@@ -21,7 +21,7 @@
 <script src="${pageContext.request.contextPath}/js/material.min.js"></script>
 </head>
 <body>
-
+    
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}">GARC 4.0 <sup>Pre-&alpha;lpha</sup></a>
-                <p class="navbar-text navbar-left"><small> for MCA Department</small></p>
+                <p class="navbar-text navbar-left"><small> for MCA Department</small> </p>
             </div>
             <%
                 String uri = request.getRequestURI();
@@ -82,3 +82,4 @@
             </div><!--/.nav-collapse -->
         </div>
     </div>
+                    <div class="label label-warning " id="loading" data-spy="affix" style="left:50%;display: none"><h5 ><span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Requesting</h5></div>

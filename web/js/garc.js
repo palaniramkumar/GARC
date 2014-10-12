@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 var uri;
+$( document ).ajaxStart(function() {
+  $( "#loading" ).show();
+})
+$( document ).ajaxComplete(function() {
+  $( "#loading" ).hide();
+});
 function ajaxCall(url, div, field) {
     $.ajax({
         type: "post", url: url,
