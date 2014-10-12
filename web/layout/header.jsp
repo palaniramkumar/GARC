@@ -3,7 +3,7 @@
     Created on : Sep 19, 2014, 1:36:31 AM
     Author     : Ramkumar
 --%>
-
+<%@ page errorPage="${pageContext.request.contextPath}/500.jsp" %>
 <%@page import="org.json.simple.JSONObject"%>
 <link rel='stylesheet prefetch' href='${pageContext.request.contextPath}/css/grid.css'>
 <!-- Bootstrap core CSS -->
