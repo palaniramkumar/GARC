@@ -149,7 +149,7 @@
                                     <span class="[ glyphicon glyphicon-chevron-down ]"></span>
                                 </span>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Profile</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="editprofile.jsp">Edit Profile</a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">View My Batchmates</a></li>                                    
                                     <li role="presentation" class="divider"></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Change Password</a></li>
