@@ -80,7 +80,7 @@ public class UserInfo {
         return json;
     }
 
-    public JSONObject updateUserField(String usertype, String field, String value, String id) throws IOException {
+    public static JSONObject updateUserField(String usertype, String field, String value, String id) throws IOException {
         String conditionElement="staff_id";
         String tableName="staff";
         if(usertype.toLowerCase().contains(STUDENT)){
@@ -96,6 +96,7 @@ public class UserInfo {
             param.add(id);
             int record = dbObj.executeUpdate(sql, param);            
             json.put("records",record);
+            json.put("message",record+ "record updated");
             json.put("responsecode", "200");
 
         } catch (Exception e) {

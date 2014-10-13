@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 var uri;
-$( document ).ajaxStart(function() {
-  $( "#loading" ).show();
+$(document).ajaxStart(function() {
+    $("#loading").show();
 })
-$( document ).ajaxComplete(function() {
-  $( "#loading" ).hide();
+$(document).ajaxComplete(function() {
+    $("#loading").hide();
 });
 function ajaxCall(url, div, field) {
     $.ajax({
@@ -65,14 +65,25 @@ function  validateUser(deployedURL) {
 function getStudentReport(deployedURL, reportname, param) {
     uri = deployedURL;
     var url = uri + "/core/student.jsp?action=" + reportname + "&subjectId=" + param;
-    if(reportname == "detailedattendance")
+    if (reportname == "detailedattendance")
         url = uri + "/core/student.jsp?action=" + reportname + "&month=" + param;
     $('#response').html("Loading...");
     ajaxCall(url, "response", "data");
     $('#viewer').slideDown();
 }
-function getDownloadableResource(deployedURL,subject_id){
-     uri = deployedURL;
-    var url = uri + "/core/subject.jsp?action=getalldownloadableresource&subject_id="+subject_id;
-     ajaxCall(url, "response", null);
+function getDownloadableResource(deployedURL, subject_id) {
+    uri = deployedURL;
+    var url = uri + "/core/subject.jsp?action=getalldownloadableresource&subject_id=" + subject_id;
+    ajaxCall(url, "response", null);
+}
+function updatePassword(deployedURL) {
+    uri = deployedURL;
+    var password = $('#newpassword').val();
+    var confirmpassword = $('#confirmpassword').val();
+    if(password != confirmpassword){
+        $("#response").html("Password Not Match");
+        return;
+    }
+    var url = uri + "/core/profile.jsp?action=changepassword&password="+password;
+    ajaxCall(url, "response", "message");
 }

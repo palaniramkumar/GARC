@@ -13,7 +13,7 @@ JSONObject json = user.getAuthToken(request.getParameter("username").toString(),
 if(json.get("responsecode") !=null && json.get("responsecode").equals("301")){
     session.setAttribute("user", json);
     //need to handle the update count
-    user.updateUserField(json.get("type").toString(), "day", misc.getNow(), json.get("id").toString());
+    UserInfo.updateUserField(json.get("type").toString(), "day", misc.getNow(), json.get("id").toString());
 }
 out.println(json.toJSONString());
 out.flush();
