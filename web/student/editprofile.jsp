@@ -82,12 +82,12 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <input class="form-control floating-label" id="newpassword" type="password" placeholder="Old Password">
+                                    <input class="form-control floating-label" id="newpassword" type="password" placeholder="New Password">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <input class="form-control floating-label" id="confirmpassword" type="password" placeholder="New Password">
+                                    <input class="form-control floating-label" id="confirmpassword" type="password" placeholder="Confirm Password">
                                 </div>
                             </div>
                             <div class="col-sm-4 form-group">
