@@ -4,6 +4,7 @@
     Author     : Ramkumar
 --%>
 
+<%@page import="org.garc.core.Student"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,6 +12,10 @@
         <meta charset="UTF-8">
         <title>Welcome Garc 4.0</title>
         <%@ include file="../layout/header.jsp" %>
+        <%
+        JSONObject user = (JSONObject) session.getAttribute("user");
+        JSONObject profile = Student.getStrudentProfile(user.get("id").toString());
+        %>
     <div class="container ">
         <div class="well">
             <ul class="nav nav-tabs">
@@ -26,38 +31,38 @@
                             <div class="form-group">
                                 <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                                 <div class="col-lg-10">
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                    <input type="email" class="form-control" id="inputEmail" value="<%=profile.get("email")%>" placeholder="Email">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputEmail" class="col-lg-2 control-label">SSLC</label>
+                                <label for="inputEmail" class="col-lg-2 control-label" >SSLC</label>
                                 <div class="col-lg-10">
-                                    <input type="email" class="form-control" id="inputSSLC" placeholder="SSLC">
+                                    <input type="text" class="form-control" id="inputSSLC" placeholder="SSLC" value="<%=profile.get("sslc")%>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail" class="col-lg-2 control-label">HSC</label>
                                 <div class="col-lg-10">
-                                    <input type="email" class="form-control" id="inputHSC" placeholder="HSC">
+                                    <input type="text" class="form-control" id="inputHSC" placeholder="HSC" value="<%=profile.get("hsc")%>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail" class="col-lg-2 control-label">UG</label>
                                 <div class="col-lg-10">
-                                    <input type="email" class="form-control" id="inputUG" placeholder="UG">
+                                    <input type="text" class="form-control" id="inputUG" placeholder="UG" value="<%=profile.get("ug")%>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail" class="col-lg-2 control-label">Mobile</label>
                                 <div class="col-lg-10">
-                                    <input type="email" class="form-control" id="inputMobile" placeholder="Mobile">
+                                    <input type="text" class="form-control" id="inputMobile" placeholder="Mobile" value="<%=profile.get("mobile")%>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="textArea" class="col-lg-2 control-label">Address</label>
                                 <div class="col-lg-10">
-                                    <textarea class="form-control" id="addresss" rows="3" id="textArea"></textarea>
-                                    <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                                    <textarea class="form-control" id="addresss" rows="3" ><%=profile.get("address")%></textarea>
+                                    <span class="help-block">*please enter all mandatory fields</span>
                                 </div>
                             </div>
                             
@@ -65,7 +70,7 @@
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
                                     <button class="btn btn-default">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button  class="btn btn-primary" onclick="updateProfile('${pageContext.request.contextPath}')">Submit</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -93,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <div id="response"></div>
+        <div id="response">d</div>
     </div>
     <%@ include file="../layout/footer.jsp" %>
 </body>

@@ -33,6 +33,45 @@ public class Student {
         this.section = section;
     }
 
+    public static JSONObject getStrudentProfile(String id) throws IOException {
+        String sql = "SELECT username,student_name,semester,section,batch,sslc,hsc,ug,phone,email,address FROM students where student_id = ? ";
+        JSONObject json = new JSONObject();
+        List param = new ArrayList();
+        param.add(id);
+        DBObject dbObj = new DBObject();
+        try {
+            ResultSet rs = dbObj.getDbResultSet(sql, param);
+
+            if (rs.next()) {
+              json.put("name", rs.getString("student_name"));
+                json.put("login_id", rs.getString("username"));
+                json.put("semester", rs.getString("semester"));
+                json.put("section", rs.getString("section"));
+                json.put("batch", rs.getString("batch"));
+                json.put("sslc", rs.getString("sslc"));
+                json.put("hsc", rs.getString("hsc"));
+                json.put("ug", rs.getString("ug"));
+                json.put("phone", rs.getString("phone"));
+                json.put("address", rs.getString("address"));
+                json.put("email", rs.getString("email"));
+                json.put("responsecode", "200");
+            } else {
+                json.put("message", "Not Found");
+                json.put("responsecode", "404");
+            }
+        } catch (Exception e) {
+            json.put("response_code", "500");
+            json.put("message", e.toString());
+            e.printStackTrace();
+        }
+        try {
+            dbObj.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, ex, null);
+        }
+        return json;
+    }
+
     public JSONObject getLeaveSummary() throws IOException {
         String sql = "SELECT a.student_id, a.subject_id,  count(a.subject_id) count,group_concat(concat(l.hour,' hour on ',date_format(l.date,'%d/%m/%Y'))) summary  FROM leaveinfo l , attendance a "
                 + "where l.student_id = ?  and a.ab_type = 'A' "
@@ -44,21 +83,20 @@ public class Student {
         try {
             ResultSet rs = dbObj.getDbResultSet(sql, param);
             int total = 0;
-            if (rs.next()) {  
+            if (rs.next()) {
                 json.put("student_id", rs.getString("student_id"));
                 do {
                     json.put(rs.getString("subject_id"), rs.getInt("count"));
-                    json.put(rs.getString("subject_id")+"_summary", rs.getString("summary"));
-                    total+=rs.getInt("count");
-                } while (rs.next());                
+                    json.put(rs.getString("subject_id") + "_summary", rs.getString("summary"));
+                    total += rs.getInt("count");
+                } while (rs.next());
                 json.put("total", total);
                 json.put("responsecode", "200");
             } else {
                 json.put("message", "Not Found");
                 json.put("responsecode", "404");
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             json.put("responsecode", "500");
             json.put("message", e.toString());
             e.printStackTrace();
@@ -247,7 +285,7 @@ public class Student {
                     JSONObject jsonElement = new JSONObject();
                     jsonElement.put("userId", rs.getString("student_id"));
                     jsonElement.put("date", rs.getString("date"));
-                    jsonElement.put("day",rs.getString("day"));
+                    jsonElement.put("day", rs.getString("day"));
                     String[] hours = rs.getString("hour").split(",");
                     String[] subject_names = rs.getString("subject_name").split(",");
                     String[] staff_names = rs.getString("staff_name").split(",");

@@ -102,7 +102,7 @@ public class DBObject {
         
         for(int i=0;i<param.size();i++)
             stmt.setString(i+1, param.get(i).toString());
-        //System.out.println(stmt);
+        System.out.println(stmt);
         int recordcount = stmt.executeUpdate();
         return recordcount;
     }

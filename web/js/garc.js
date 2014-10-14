@@ -87,3 +87,22 @@ function updatePassword(deployedURL) {
     var url = uri + "/core/profile.jsp?action=changepassword&password="+password;
     ajaxCall(url, "response", "message");
 }
+
+function updateProfile(deployedURL) {
+    uri = deployedURL;
+    var address = $('#address').val();
+    var mobile = $('#inputMobile').val();  
+    var sslc = $('#inputSSLC').val();   
+    var hsc = $('#inputHSC').val();   
+    var ug = $('#inputUG').val();   
+    var email = $('#inputEmail').val();   
+    
+    
+    var url = uri + "/core/profile.jsp?action=updateprofile&address="+address+
+            "&phone="+mobile+
+            "&ug="+ug+
+            "&hsc="+hsc+
+            "&sslc="+sslc+
+            "&email="+email;
+    ajaxCall(url, "response", "message");
+}

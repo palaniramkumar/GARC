@@ -96,7 +96,7 @@ public class UserInfo {
             param.add(id);
             int record = dbObj.executeUpdate(sql, param);            
             json.put("records",record);
-            json.put("message",record+ "record updated");
+            json.put("message",record+ " record updated");
             json.put("responsecode", "200");
 
         } catch (Exception e) {
