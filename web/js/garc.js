@@ -105,4 +105,5 @@ function updateProfile(deployedURL) {
             "&sslc="+sslc+
             "&email="+email;
     ajaxCall(url, "response", "message");
+    submit();
 }

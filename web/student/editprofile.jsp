@@ -25,7 +25,7 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="home">
                     <br/>
-                    <form class="form-horizontal tab">
+                    <div class="form-horizontal tab">
                         <fieldset>
                             <legend>Edit User Profile</legend>
                             <div class="form-group">
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                    </form>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="profile">
                     <br/>
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <div id="response">d</div>
+        <div id="response"></div>
     </div>
     <%@ include file="../layout/footer.jsp" %>
 </body>
