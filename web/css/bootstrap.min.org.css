@@ -94,3 +94,6 @@ fa-spin-custom, .glyphicon-spin {
         transform: rotate(359deg);
     }
 }
+#loading{
+    z-index: 9999;
+}

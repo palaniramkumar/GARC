@@ -16,28 +16,28 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#">Overview</a></li>                    
+                    <li class="active"><a href="#"><span class = "glyphicon glyphicon-bell"> Overview</span></a></li>                    
                     <li><a href="#">Garc Setup</a></li>
                     <li><a href="">Course Setup</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a>User Entry</a></li>  
-                    <li><a href="">Faculty</a></li>
-                    <li><a href="">Students</a></li>
-                    <li><a href="">Subject</a></li>
+                    <li class="active"><a><span class = "glyphicon glyphicon-user"> Garc Users</span></a></li>  
+                    <li><a href="#"  data-load="staff">Faculty</a></li>
+                    <li><a href="#" data-load="student">Students</a></li>
+                    <li><a href="" data-load="subject">Subject</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a>Electives</a></li>  
+                    <li class="active"><a><span class = "glyphicon glyphicon-book"> Electives</span></a></li>  
                     <li><a href="">Setup Electives</a></li>
                     <li><a href="">View Elective Students</a></li>                    
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a>Uploads</a></li>  
+                    <li class="active"><a><span class = "glyphicon glyphicon-upload"> Uploads</span></a></li>  
                     <li><a href="">Semester Planner</a></li>
                     <li><a href="">Question Bank</a></li>
                 </ul>
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="content">
                 <h1 class="page-header">Dashboard</h1>
 
                 <div class="row placeholders">
@@ -195,113 +195,130 @@
         </div>
     </div>>
     <%@ include file="../layout/footer.jsp" %>
-            <style>
-            /*
- * Base structure
- */
+    
+    <script>
 
-            /* Move down content because we have a fixed navbar that is 50px tall */
-            body {
-                padding-top: 50px;
-            }
-
-
-            /*
-             * Global add-ons
-             */
-
-            .sub-header {
-                padding-bottom: 10px;
-                border-bottom: 1px solid #eee;
+            $("li>a").click(function() {
+                url = $(this).attr('data-load')+".jsp";
+                $.ajax({url: url, success: function(result) {
+                        $("#content").html(result);
+                        localStorage.ajaxURL=url;
+                    }});
+            });
+            if ('ajaxURL' in localStorage) {
+                $.ajax({url: localStorage.ajaxURL, success: function(result) {
+                        $("#content").html(result);
+                      
+                    }});
             }
 
-            /*
-             * Top navigation
-             * Hide default border to remove 1px line.
-             */
-            .navbar-fixed-top {
-                border: 0;
-            }
-
-            /*
-             * Sidebar
-             */
-
-            /* Hide for mobile, show later */
-            .sidebar {
-                display: none;
-            }
-            @media (min-width: 768px) {
-                .sidebar {
-                    position: fixed;
-                    top: 51px;
-                    bottom: 0;
-                    left: 0;
-                    z-index: 1000;
-                    display: block;
-                    padding: 20px;
-                    overflow-x: hidden;
-                    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-                    background-color: #f5f5f5;
-                    border-right: 1px solid #eee;
-                }
-            }
-
-            /* Sidebar navigation */
-            .nav-sidebar {
-                margin-right: -21px; /* 20px padding + 1px border */
-                margin-bottom: 20px;
-                margin-left: -20px;
-            }
-            .nav-sidebar > li > a {
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-            .nav-sidebar > .active > a,
-            .nav-sidebar > .active > a:hover,
-            .nav-sidebar > .active > a:focus {
-                color: #fff;
-                background-color: tomato;
-            }
-
-
-            /*
-             * Main content
-             */
-
-            .main {
-                padding: 20px;
-            }
-            @media (min-width: 768px) {
-                .main {
-                    padding-right: 40px;
-                    padding-left: 40px;
-                }
-            }
-            .main .page-header {
-                margin-top: 0;
-            }
-
-
-            /*
-             * Placeholder dashboard ideas
-             */
-
-            .placeholders {
-                margin-bottom: 30px;
-                text-align: center;
-            }
-            .placeholders h4 {
-                margin-bottom: 0;
-            }
-            .placeholder {
-                margin-bottom: 20px;
-            }
-            .placeholder img {
-                display: inline-block;
-                border-radius: 50%;
-            }
-        </style>
+    </script>
 </body>
+<style>
+        /*
+* Base structure
+*/
 
+        /* Move down content because we have a fixed navbar that is 50px tall */
+        body {
+            padding-top: 50px;
+        }
+
+
+        /*
+         * Global add-ons
+         */
+
+        .sub-header {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /*
+         * Top navigation
+         * Hide default border to remove 1px line.
+         */
+        .navbar-fixed-top {
+            border: 0;
+        }
+
+        /*
+         * Sidebar
+         */
+
+        /* Hide for mobile, show later */
+        .sidebar {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 51px;
+                bottom: 0;
+                left: 0;
+                z-index: 1000;
+                display: block;
+                padding: 20px;
+                overflow-x: hidden;
+                overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+                background-color: #f5f5f5;
+                border-right: 1px solid #eee;
+            }
+        }
+
+        /* Sidebar navigation */
+        .nav-sidebar {
+            margin-right: -21px; /* 20px padding + 1px border */
+            margin-bottom: 20px;
+            margin-left: -20px;
+        }
+        .nav-sidebar > li > a {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+        .nav-sidebar > .active > a,
+        .nav-sidebar > .active > a:hover,
+        .nav-sidebar > .active > a:focus {
+            color: #fff;
+            background-color: tomato;
+        }
+
+
+        /*
+         * Main content
+         */
+
+        .main {
+            padding: 20px;
+        }
+        @media (min-width: 768px) {
+            .main {
+                padding-right: 40px;
+                padding-left: 40px;
+            }
+        }
+        .main .page-header {
+            margin-top: 0;
+        }
+
+
+        /*
+         * Placeholder dashboard ideas
+         */
+
+        .placeholders {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .placeholders h4 {
+            margin-bottom: 0;
+        }
+        .placeholder {
+            margin-bottom: 20px;
+        }
+        .placeholder img {
+            display: inline-block;
+            border-radius: 50%;
+        }
+    </style>
 </html>
