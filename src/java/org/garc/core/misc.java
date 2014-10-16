@@ -76,4 +76,14 @@ public class misc {
         //System.out.println("Java's Default Date Format: " + now);
         return  mysqlDateString;
     }
+    public static String toSectionAsString(int section){
+        return String.valueOf((char)('A'+(section -1)));
+    }
+    public static String toSectionAsString(Object section){
+        return String.valueOf((char)('A'+(Integer.parseInt(section.toString()) -1)));
+    }
+    public static int toSectionAsInt(String section){
+        return (int)('A'-(section.toCharArray()[0])+1);
+    }
+    
 }

@@ -190,7 +190,7 @@
                                 </ul>
                             </div>
                             <p><strong><span class="glyphicon glyphicon-user"></span>  Reportee: </strong> <a href='#' data-container="body" data-toggle="popover" data-content='<center><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"  width="100" height="100" class="img-circle dp"><h5><%=facultyInfo.get("qualification")%></h5><h5></h5><%=facultyInfo.get("mailid")%><h5><%=facultyInfo.get("subjects_handled")%></h5></center>'><%=getValueByKey(reportee, "title", 0)%> <%=getValueByKey(reportee, "name", 0)%></a> <%=getValueByKey(reportee, "qualification", 0)%>. </p>
-                            <p><strong><span class="glyphicon glyphicon-glass"></span>  Semester: </strong> <%=user.get("semester")%>, Section <%=user.get("section")%> </p>
+                            <p><strong><span class="glyphicon glyphicon-glass"></span>  Semester: </strong> <%=user.get("semester")%>, Section <%=misc.toSectionAsString(user.get("section"))%> </p>
                             <p><strong><span class="glyphicon glyphicon-time"></span> Last Login: </strong> <%=user.get("last_login_at")%>
                             <p><strong><span class="glyphicon glyphicon-heart"></span> Current Location: </strong>Chennai
                         </div>

@@ -46,7 +46,7 @@ public class Student {
               json.put("name", rs.getString("student_name"));
                 json.put("login_id", rs.getString("username"));
                 json.put("semester", rs.getString("semester"));
-                json.put("section", rs.getString("section"));
+                json.put("section", misc.toSectionAsString(rs.getInt("section")));
                 json.put("batch", rs.getString("batch"));
                 json.put("sslc", rs.getString("sslc"));
                 json.put("hsc", rs.getString("hsc"));
@@ -351,7 +351,7 @@ public class Student {
                     jsonElement.put("name", rs.getString("student_name"));
                     jsonElement.put("id", rs.getString("username"));
                     jsonElement.put("semester", rs.getString("semester"));
-                    jsonElement.put("section", rs.getString("section"));
+                    jsonElement.put("section", misc.toSectionAsString(rs.getInt("section")));
                     jsonElement.put("batch", rs.getString("batch"));
                     jsonArray.add(jsonElement);
                     i++;
