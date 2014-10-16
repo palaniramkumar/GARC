@@ -11,22 +11,18 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="form-group">
-                <input type="text" class="form-control floating-label" placeholder="Faculty Name">
+                <input type="text" class="form-control floating-label" placeholder="Student Name">
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
         <div class="col-sm-1">
             <div class="form-group">
-                <input type="text" class="form-control floating-label" placeholder="User Name">
+                <input type="text" class="form-control floating-label" placeholder="Student ID">
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
-        <div class="col-sm-1">
-            <div class="form-group">
-                <input type="text" class="form-control floating-label" placeholder="Qualification">
-            </div><!-- /input-group -->
-        </div>
+        
         <div class="col-sm-2">
             <div class="input-group">
-                <span class="input-group-addon">Designation</span>
+                <span class="input-group-addon">Batch</span>
                 <select class="form-control">
                     <option> - Select -</option>
                 </select>
@@ -34,7 +30,7 @@
         </div><!-- /.col-lg-6 -->
         <div class="col-sm-2">
             <div class="input-group">
-                <span class="input-group-addon">Title</span>
+                <span class="input-group-addon">Semester</span>
                 <select class="form-control">
                     <option> - Select -</option>
                 </select>
@@ -42,7 +38,7 @@
         </div><!-- /.col-lg-6 -->
         <div class="col-sm-2">
             <div class="input-group">
-                <span class="input-group-addon">Login Type</span>
+                <span class="input-group-addon">Section</span>
                 <select class="form-control">
                     <option> - Select -</option>
                 </select>

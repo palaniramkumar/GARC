@@ -1,6 +1,6 @@
 <%-- 
-    Document   : staff
-    Created on : Oct 16, 2014, 2:15:18 AM
+    Document   : coursesetup
+    Created on : Oct 17, 2014, 12:36:00 AM
     Author     : Ramkumar
 --%>
 
@@ -9,14 +9,12 @@
         <h5>Garc Users <small>Subjects</small></h5>
     </div>
     <div class="row">
-        <div class="col-sm-1">
-            <div class="form-group">
-                <input type="text" class="form-control floating-label" placeholder="Subject Code">
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-        <div class="col-sm-5">
-            <div class="form-group">
-                <input type="text" class="form-control floating-label" placeholder="Subject Name">
+        <div class="col-sm-2">
+            <div class="input-group">
+                <span class="input-group-addon">Year</span>
+                <select class="form-control">
+                    <option> - Select -</option>
+                </select>
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
         <div class="col-sm-2">
@@ -27,18 +25,22 @@
                 </select>
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <div class="input-group">
-                <span class="input-group-addon"><input type="checkbox"/>Elective</span>
-                
+                <span class="input-group-addon">No. of sections</span>
+                <select class="form-control">
+                    <option> - Select -</option>
+                </select>
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <div class="input-group">
-                <span class="input-group-addon"> <input type="checkbox"/>Lab</span>
-               
+                <span class="input-group-addon">Number of Electives</span>
+                <select class="form-control">
+                    <option>0</option>
+                </select>
             </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
+        </div><!-- /.col-lg-6 -->        
         <div class="col-sm-1">
             <a href="javascript:void(0)"  onclick="updatePassword('${pageContext.request.contextPath}')" class="btn btn-warning  btn-raised" style="margin-top: 0;"> <span class="glyphicon glyphicon-plus"></span> </a>
         </div>

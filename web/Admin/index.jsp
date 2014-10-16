@@ -12,13 +12,13 @@
         <title>Welcome Garc 4.0</title>
 
         <%@ include file="../layout/header.jsp" %>
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid ">
+        <div class="row ">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href="#"><span class = "glyphicon glyphicon-bell"> Overview</span></a></li>                    
-                    <li><a href="#">Garc Setup</a></li>
-                    <li><a href="">Course Setup</a></li>
+                    <li class="active"><a href="#"><span class = "glyphicon glyphicon-warning-sign"> Settings</span></a></li>                    
+                    <li><a href="#" data-load="garcsetup">Garc Setup</a></li>
+                    <li><a href="#" data-load="coursesetup">Course Setup</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li class="active"><a><span class = "glyphicon glyphicon-user"> Garc Users</span></a></li>  
@@ -261,7 +261,7 @@
                 padding: 20px;
                 overflow-x: hidden;
                 overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-                background-color: #f5f5f5;
+                background-color: #fff;
                 border-right: 1px solid #eee;
             }
         }

@@ -293,8 +293,9 @@
                             <div class="modal-footer " style="text-align: left">
                                 <%                                    if (marks.get("responsecode").equals("200"))
                                         for (j = 0; j < Integer.parseInt(marks.get("count").toString()); j++) {%>                              
-
+                                <%=getValueByKey(marks, "examname", j)%>            
                                 <div class="progress">
+                                    
                                     <div data-percentage="0%" style="width: <%=percent%>%;" class="progress-bar progress-bar-<%=theme[j % 4]%>" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="<%=percent.equals("0") ? "right" : "top"%>" title="<%=tooltipTxt%>">
                                         <span class="sr-only"><%=percent%>% Complete</span>
                                         <span class="progress-type"><%=getValueByKey(marks, "examname", j)%></span>
@@ -362,7 +363,7 @@
                                              $('[data-toggle="popover"]').popover({trigger: 'hover', 'placement': 'bottom','html': true});
                                             $('.more').readmore({
                                                 speed: 75,
-                                                maxHeight: 325
+                                                maxHeight: 290
                                             });
                                             $(function() {
 

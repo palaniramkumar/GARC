@@ -12,12 +12,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.garc.config.DBObject;
 import org.garc.oauth.UserInfo;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
@@ -25,6 +26,21 @@ import org.json.simple.JSONObject;
  * @author Ramkumar
  */
 public class misc {
+
+    public static Map<String, Integer> facultyType = new HashMap<String, Integer>() {
+        {
+            put("Professor", 1);
+            put("Associate Professor", 2);
+            put("Asst. Professor", 3);
+            put("Visiting Professor", 4);
+            put("S.G. Lecturer", 5);
+            put("Sr. Lecturer", 6);
+            put("Lecturer", 7);
+            put("Office Assitant", 8);
+            put("Library Assistant", 9);
+            put("Lab Assistant", 10);
+        }
+    };
 
     public JSONObject getHitCount(boolean isNew) throws IOException {
         String sql = "update misc set value = value + 1 where type like 'hit_count'";
@@ -38,8 +54,6 @@ public class misc {
             }
             sql = "select value from misc where type like 'hit_count'";
             ResultSet rs = dbObj.getDbResultSet(sql);
-            JSONArray jsonArray = new JSONArray();
-
             if (rs.next()) {
                 json.put("count", rs.getString("value"));
             } else {
@@ -60,30 +74,36 @@ public class misc {
         }
         return json;
     }
+
     public static void main(String[] args) throws UnsupportedEncodingException {
         String password = "demo";
         System.out.println("MD5 in hex: " + MySQLPassword(password));
     }
+
     public static String MySQLPassword(String plainText) throws UnsupportedEncodingException {
         byte[] utf8 = plainText.getBytes("UTF-8");
         return "*" + DigestUtils.shaHex(DigestUtils.sha(utf8)).toUpperCase();
     }
-    public static  String getNow(){
+
+    public static String getNow() {
         Date now = new Date();
         String pattern = "yyyy-MM-dd HH:mm:ss";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String mysqlDateString = formatter.format(now);
         //System.out.println("Java's Default Date Format: " + now);
-        return  mysqlDateString;
+        return mysqlDateString;
     }
-    public static String toSectionAsString(int section){
-        return String.valueOf((char)('A'+(section -1)));
+
+    public static String toSectionAsString(int section) {
+        return String.valueOf((char) ('A' + (section - 1)));
     }
-    public static String toSectionAsString(Object section){
-        return String.valueOf((char)('A'+(Integer.parseInt(section.toString()) -1)));
+
+    public static String toSectionAsString(Object section) {
+        return String.valueOf((char) ('A' + (Integer.parseInt(section.toString()) - 1)));
     }
-    public static int toSectionAsInt(String section){
-        return (int)('A'-(section.toCharArray()[0])+1);
+
+    public static int toSectionAsInt(String section) {
+        return (int) ('A' - (section.toCharArray()[0]) + 1);
     }
-    
+
 }

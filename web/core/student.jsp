@@ -92,7 +92,7 @@
 </thead>
 <%
     for (int i = 2; i <= 7; i++) {
-%><tr ><td><%=days[i]%></td><%
+%><tr ><td><%=i-1%> Period</td><%
     for (int j = 1; j <= maxDay; j++) {
         JSONObject finder = parseJson(json, j, i - 1);
         if (finder != null) {
