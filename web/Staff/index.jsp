@@ -10,138 +10,50 @@
     <head>
         <meta charset="UTF-8">
         <title>Welcome Garc 4.0</title>
-        <style>
-            .profile {
-                background-color: #FF766C;
-                border: 1px solid #ff766c;
-            }
 
-            .profile img {
-                display: block;
-                border: 10px solid rgba(255, 255, 255, 0.3);
-                margin: 0 auto;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-            .profile p {
-                text-align: center;
-                color: #fff;
-            }
-
-            .list-group-item {
-                background-color: #fff;
-                border-radius: 0px !important;
-                border: 1px solid #DDD;
-            }
-
-            .list-group-item.active, .list-group-item:hover {
-                border-left: 3px solid #FF766C;
-                background-color: #F8F7F5;
-            }
-
-            /*Ignore this tag. It is to give space.*/
-            #space {padding: 10px;}
-
-
-        </style>
-        <%@ include file="../layout/header.jsp" %>
+        <%@ include file="../layout/facultyHeader.jsp" %>
     <div class="container">
         <div id="space"></div>
-        <div class="container">
+        <div class="container ">
             <section class="row">
                 <article class="col-sm-3 col-md-3 col-lg-3">
                     <div class="profile">
                         <img src="http://placehold.it/150x150" alt="..." class="img-circle">
                         <p>Oscar Gonzalez</p>
-                        <p>example@bootsnipp.com</p>
+                        <select class="form-control">
+                            <option>Computer Networks</option>
+                        </select>
                     </div>
-                    <ul class="list-group">
-                        <li class="list-group-item active">Computer Networks</li>
-                        <li class="list-group-item">Software Engineering</li>
-                    </ul>
+
                 </article>
-                <div class="col-md-9">
-
-                    <nav class="navbar panel navbar-static-top" role="navigation">
-                        <div class="container">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-
-                                </button>
-                            </div>
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li>
-                                        <a href="#inbox" role="tab" data-toggle="tab">
-                                            <span class="glyphicon glyphicon-envelope"></span> Message
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#inbox" role="tab" data-toggle="tab">
-                                            <span class="glyphicon glyphicon-compressed"></span>Course Work <span class="label label-success">10</span>
-                                        </a>
-                                    </li>
-                                    <li><a href="#sent-mail" role="tab" data-toggle="tab">
-                                            <span class="glyphicon glyphicon-ok-sign"></span>Attendance</a>
-
-                                    </li>
-                                    <li><a href="#draft" role="tab" data-toggle="tab">
-                                            <span class="glyphicon glyphicon-pencil"></span>Assessment</a>
-
-                                    </li>
-                                    <li><a href="#trash" role="tab" data-toggle="tab">
-                                            <span class="glyphicon glyphicon-upload"></span>Resources</a>
-
-                                    </li><li><a href="#trash" role="tab" data-toggle="tab">
-                                            <span class="glyphicon glyphicon-th-list"></span>Time Table</a>
-
-
-
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <!-- /.navbar-collapse -->
-                        </div>
-                        <!-- /.container-fluid -->
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <ul class="list-group">
-                        <li class="list-group-item active">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <ul class="list-group">
-                        <li class="list-group-item active">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-
-                    <div class="thumbnail panel-google-plus">
-
-                        <div id="graph" style="height: 135px"></div>
-                        <h3><center><span class="glyphicon glyphicon-ok"></span> Attendance %</center></h3>
+                <div class="well col-md-9 " style="height: 250px">
+                    <div class="col-sm-5" ><h4> Allocated Subject</h4>    
+                        <p><span class="glyphicon glyphicon-bell"></span>MC0167 - Computer Networks for Section B</p>
+                        <p><span class="glyphicon glyphicon-bell"></span>MC0168 - Operating System for Section A</p>
+                    </div>
+                    <div class="col-sm-3" > <h4>Today's Absentees</h4>
+                        <p><span class="glyphicon glyphicon-calendar"></span>Ramkumar</p>
+                        <p><span class="glyphicon glyphicon-calendar"></span>Ravi</p>
+                        <p><span class="glyphicon glyphicon-calendar"></span>Rajan</p>
+                    </div>
+                    <div class="col-sm-4" > <h4>Attendance %</h4>
+                        <p><span class="glyphicon glyphicon-bell"></span>MC0167, Section B has 89%</p>
+                        <p><span class="glyphicon glyphicon-bell"></span>MC0168, - Section A has 91%</p>
+                        <!--p><span class="glyphicon glyphicon-book"></span>Daily Attendance</p>
+                        <p><span class="glyphicon glyphicon-dashboard"></span>cumulative Attendance</p>
+                        <p><span class="glyphicon glyphicon-calendar"></span>Attendance by subjects</p>
+                        <p><span class="glyphicon glyphicon-cloud"></span>Non Academic Attendance</p>
+                        <p><span class="glyphicon glyphicon-bell"></span>Absentees Report</p>
+                        <p><span class="glyphicon glyphicon-list"></span>Course Progress</p>
+                        <p><span class="glyphicon glyphicon-thumbs-up"></span>Course Outline</p>
+                        <p><span class="glyphicon glyphicon-star"></span>Course Coverage</p-->
+                    </div>
+                    <div class="col-sm-10">
+                        <p><span class="glyphicon glyphicon-stats"></span>You have created 12 test for this semester and average mark scored by the student is 60%</p>
                     </div>
                 </div>
+                
             </section>
-
-
-
-
         </div>
         <section class="row">
             <div class="container">
@@ -399,5 +311,27 @@
     </div>
     <%@ include file="../layout/footer.jsp" %>
 </body>
+<style>
+    .profile {
+        background-color: #FF766C;
+        border: 1px solid #ff766c;
+    }
 
+    .profile img {
+        display: block;
+        border: 10px solid rgba(255, 255, 255, 0.3);
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .profile p {
+        text-align: center;
+        color: #fff;
+    }
+    .profile .form-control {
+        text-align: center;
+        color: #fff;
+    }
+
+</style>
 </html>
