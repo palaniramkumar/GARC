@@ -24,18 +24,18 @@
                     <li class="active"><a><span class = "glyphicon glyphicon-user"> Garc Users</span></a></li>  
                     <li><a href="#"  data-load="staff">Faculty</a></li>
                     <li><a href="#" data-load="student">Students</a></li>
-                    <li><a href="" data-load="subject">Subject</a></li>
+                    <li><a href="#" data-load="subject">Subject</a></li>
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li class="active"><a><span class = "glyphicon glyphicon-book"> Electives</span></a></li>  
-                    <li><a href="">Setup Electives</a></li>
-                    <li><a href="">View Elective Students</a></li>                    
+                    <li><a href="#" data-load="assignElectiveStudents">Setup Electives</a></li>
+                    <li><a href="#" data-load="viewElectiveStudents">View Elective Students</a></li>                    
                 </ul>
-                <ul class="nav nav-sidebar">
+                <!--ul class="nav nav-sidebar">
                     <li class="active"><a><span class = "glyphicon glyphicon-upload"> Uploads</span></a></li>  
                     <li><a href="">Semester Planner</a></li>
                     <li><a href="">Question Bank</a></li>
-                </ul>
+                </ul-->
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="content">
                 <h1 class="page-header">Dashboard</h1>
