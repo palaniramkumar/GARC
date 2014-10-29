@@ -38,8 +38,8 @@ public class Subject {
                     jsonElement.put("subject_id", rs.getString("subject_id"));
                     jsonElement.put("subject_name", rs.getString("subject_name"));
                     jsonElement.put("semester", rs.getString("semester"));
-                    jsonElement.put("elective", rs.getString("elective"));
-                    jsonElement.put("lab", rs.getString("lab"));
+                    jsonElement.put("elective", rs.getString("elective").replace("null", ""));
+                    jsonElement.put("lab", rs.getString("lab").replace("null", ""));
                     jsonArray.add(jsonElement);
                     i++;
 

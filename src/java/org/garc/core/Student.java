@@ -337,7 +337,7 @@ public class Student {
     }
 
     public static JSONObject getStudentsList() throws IOException {
-        String sql = "SELECT username,student_name,semester,section,batch FROM students order by batch ,username ";
+        String sql = "SELECT username,student_name,semester,section,batch,username FROM students order by batch ,username ";
         JSONObject json = new JSONObject();
         List param = new ArrayList();
         DBObject dbObj = new DBObject();
@@ -353,6 +353,7 @@ public class Student {
                     jsonElement.put("semester", rs.getString("semester"));
                     jsonElement.put("section", misc.toSectionAsString(rs.getInt("section")));
                     jsonElement.put("batch", rs.getString("batch"));
+                    jsonElement.put("login_name", rs.getString("username"));
                     jsonArray.add(jsonElement);
                     i++;
 
