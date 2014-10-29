@@ -56,7 +56,7 @@
             </section>
         </div>
         <section class="row">
-            <div class="container">
+            <div class="container" id="content">
                 <div id="space"></div>
                 <ul class="thumbnails list-unstyled">
                     <li class="col-md-3">
@@ -310,6 +310,23 @@
         </section>
     </div>
     <%@ include file="../layout/footer.jsp" %>
+    <script>
+
+            $("li>a").click(function() {
+                url = $(this).attr('data-load')+".jsp";
+                $.ajax({url: url, success: function(result) {
+                        $("#content").html(result);
+                        localStorage.ajaxURL=url;
+                    }});
+            });
+            if ('ajaxURL' in localStorage) {
+                $.ajax({url: localStorage.ajaxURL, success: function(result) {
+                        $("#content").html(result);
+                      
+                    }});
+            }
+
+    </script>
 </body>
 <style>
     .profile {

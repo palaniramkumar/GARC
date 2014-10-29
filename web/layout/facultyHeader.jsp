@@ -41,15 +41,12 @@
             %>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li <%=pageName.equals("") ? "class='active'" : ""%> ><a href="${pageContext.request.contextPath}"> <span class="glyphicon glyphicon-home"></span> Home</a></li>
-                    <li <%=pageName.equals("students.jsp") ? "class='active'" : ""%>><a href="${pageContext.request.contextPath}/students.jsp"><span class="glyphicon glyphicon-user"></span> Course Work</a></li>
-                    <li <%=pageName.equals("faculties.jsp") ? "class='active'" : ""%>><a href="${pageContext.request.contextPath}/faculties.jsp"><span class="glyphicon glyphicon-bookmark   "></span> Attendance</a></li>
-                    <li <%=pageName.equals("resources.jsp") ? "class='active'" : ""%>><a href="${pageContext.request.contextPath}/resources.jsp"><span class="glyphicon glyphicon-download"></span> Assessment</a></li>
-                    <li><a href="${pageContext.request.contextPath}/resources.jsp"><span class="glyphicon glyphicon-star"></span> Resources</a></li>
-                    <!--li <%=pageName.equals("articles.jsp") ? "class='active'" : ""%>><a href="${pageContext.request.contextPath}/articles.jsp"><span class="glyphicon glyphicon-book"></span> Article</a></li-->
-
-
-
+                    <li><a href="./"> <span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="#" data-load="coursework"><span class="glyphicon glyphicon-user"></span> Course Work</a></li>
+                    <li ><a href="#" data-load="attendance"><span class="glyphicon glyphicon-bookmark   "></span> Attendance</a></li>
+                    <li><a href="#" data-load="assessment"><span class="glyphicon glyphicon-download"></span> Assessment</a></li>
+                    <li><a href="#" data-load="resources"><span class="glyphicon glyphicon-star"></span> Resources</a></li>
+                    
                     <% {
                             JSONObject user = null;
                             if (session.getAttribute("user") != null) {
