@@ -3,64 +3,72 @@
     Created on : Oct 17, 2014, 12:35:49 AM
     Author     : Ramkumar
 --%>
-
+<%@page import="org.garc.core.misc"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%
+    JSONObject appConfig = misc.getApplicationSettings();
+%>
 <form class="form-horizontal well">
     <fieldset>
         <legend>Garc Setup</legend>
         <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">College Name</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputEmail" placeholder="College Name">
+                <input type="text" class="form-control" id="inputEmail" placeholder="College Name" value="<%=appConfig.get("college")%>">
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">Course Duration</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputEmail" placeholder="Course Duration">
+                <input type="text" class="form-control" id="inputEmail" placeholder="Course Duration" value="<%=appConfig.get("course_duration")%>">
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">Department</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputEmail" placeholder="Department">
-            </div>
-        </div>
-       <div class="form-group">
-            <label for="inputEmail" class="col-lg-2 control-label">Periods</label>
-            <div class="col-lg-10">
-                <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-        </div>
-         <div class="form-group">
-            <label for="inputEmail" class="col-lg-2 control-label">sections</label>
-            <div class="col-lg-10">
-               <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+                <input type="text" class="form-control" id="inputEmail" placeholder="Department" value="<%=appConfig.get("dept")%>">
             </div>
         </div>
         <div class="form-group">
-            <label for="select" class="col-lg-2 control-label">Selects</label>
+            <label for="inputEmail" class="col-lg-2 control-label">Periods</label>
             <div class="col-lg-10">
-                <select class="form-control" id="select">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                <br>
-                
+                <input type="text" class="form-control" id="inputEmail" placeholder="Periods" value="<%=appConfig.get("max_period")%>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">sections</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputEmail" placeholder="no of section" value="<%=appConfig.get("no_of_section")%>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">Max Units</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputEmail" placeholder="max_unit" value="<%=appConfig.get("max_unit")%>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">max period</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputEmail" placeholder="max_period" value="<%=appConfig.get("max_period")%>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Download Permissions</label>
+            <div class="col-lg-10">
+                <div class=" radio-inline">
+                    <label>
+                        <input type="checkbox" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                        Lock Resource
+                    </label>
+                </div>
+                <div class=" radio-inline">
+                    <label>
+                        <input type="checkbox" name="optionsRadios" id="optionsRadios2" value="option2">
+                        Lock Software
+                    </label>
+                </div>
             </div>
         </div>
         <div class="form-group">

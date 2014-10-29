@@ -70,7 +70,7 @@ public class Faculty {
     }
 
     public static JSONObject getFacultyList() throws IOException {
-        String sql = "select staff_name,qualification,user_type,designation,subjects_handled,mailid,phone_number,staff_id,title  "
+        String sql = "select staff_name,qualification,user_type,designation,subjects_handled,mailid,phone_number,staff_id,title,user_name  "
                 + "from staff where user_type!='Admin' order by priority";
         JSONObject json = new JSONObject();
         List param = new ArrayList();
@@ -91,6 +91,7 @@ public class Faculty {
                     jsonElement.put("phone_number", rs.getString("phone_number"));
                     jsonElement.put("title", rs.getString("title"));
                     jsonElement.put("user_type", rs.getString("user_type"));
+                    jsonElement.put("login_name", rs.getString("user_name"));
                     jsonArray.add(jsonElement);
                     i++;
 

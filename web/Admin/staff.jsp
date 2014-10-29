@@ -4,6 +4,9 @@
     Author     : Ramkumar
 --%>
 
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="org.garc.core.Faculty"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Iterator"%>
@@ -81,59 +84,51 @@
         </div>
     </div><!-- /.row -->
 </div>
+<%!
+    String getValueByKey(JSONObject json, String key, int i) {
+        String parsedValue = "";
+
+        try {
+            parsedValue = ((JSONObject) ((JSONArray) json.get("items")).get(i)).get(key).toString();
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.print(json);
+        }
+        return parsedValue;
+    }
+%>       
 <div class="well">
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
+                <th>Staff Name</th>
+                <th>User Name</th>
+                <th>Type</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
+            <%  String[] designClass = {" ", " ", "info", "success", "danger", "warning", "active"};
+                JSONObject json = Faculty.getFacultyList();
+                int count = Integer.parseInt(json.get("count").toString());
+
+                for (int i = 0; i < count; i++) {
+            %>
+            <tr class="<%=designClass[i % 7]%>">
+                <td><%=i+1%></td>
+                <td><%=getValueByKey(json, "name", i)%></td>
+                <td><%=getValueByKey(json, "login_name", i)%></td>
+                <td><%=getValueByKey(json, "user_type", i)%></td>
+                <td >
+                    
+                        <a href="javascript:void(0)" > <span class="glyphicon glyphicon-edit" > </span> </a>
+                        <a href="javascript:void(0)" ><span class="glyphicon glyphicon-trash"> </span> </a>
+                        <a href="javascript:void(0)" ><span class="glyphicon glyphicon-refresh"></span> </a>
+                           
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="info">
-                <td>3</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="success">
-                <td>4</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="danger">
-                <td>5</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="warning">
-                <td>6</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
-            <tr class="active">
-                <td>7</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-            </tr>
+            <%}%>
+
         </tbody>
     </table>
 </div>

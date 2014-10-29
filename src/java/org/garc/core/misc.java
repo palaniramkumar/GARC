@@ -75,9 +75,38 @@ public class misc {
         return json;
     }
 
+    public static JSONObject getApplicationSettings() throws IOException {
+
+        String sql = "select * from misc ";
+        JSONObject json = new JSONObject();
+        DBObject dbObj = new DBObject();
+        try {
+            ResultSet rs = dbObj.getDbResultSet(sql);
+            while (rs.next()) {
+                json.put(rs.getString("type"), rs.getString("value"));
+            }
+
+        } catch (Exception e) {
+            json.put("responsecode", "500");
+            json.put("message", e.toString());
+            e.printStackTrace();
+        }
+
+        try {
+            dbObj.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return json;
+    }
+
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String password = "demo";
-        System.out.println("MD5 in hex: " + MySQLPassword(password));
+
+        try {
+            System.out.println(getApplicationSettings());
+        } catch (IOException ex) {
+            Logger.getLogger(misc.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public static String MySQLPassword(String plainText) throws UnsupportedEncodingException {
