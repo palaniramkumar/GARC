@@ -81,10 +81,10 @@
             <table class="table table-striped table-hover ">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Column heading</th>
-                        <th>Column heading</th>
-                        <th>Column heading</th>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Semester</th>
+                        <th>Section</th>
                     </tr>
                 </thead>
                 <tbody>

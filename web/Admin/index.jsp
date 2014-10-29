@@ -28,8 +28,7 @@
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li class="active"><a><span class = "glyphicon glyphicon-book"> Electives</span></a></li>  
-                    <li><a href="#" data-load="assignElectiveStudents">Setup Electives</a></li>
-                    <li><a href="#" data-load="viewElectiveStudents">View Elective Students</a></li>                    
+                    <li><a href="#" data-load="assignElectiveStudents">Setup Electives</a></li>           
                 </ul>
                 <!--ul class="nav nav-sidebar">
                     <li class="active"><a><span class = "glyphicon glyphicon-upload"> Uploads</span></a></li>  
