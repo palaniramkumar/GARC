@@ -41,7 +41,7 @@
             %>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="./"> <span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="#" data-load="summary"> <span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="#" data-load="coursework"><span class="glyphicon glyphicon-user"></span> Course Work</a></li>
                     <li ><a href="#" data-load="attendance"><span class="glyphicon glyphicon-bookmark   "></span> Attendance</a></li>
                     <li><a href="#" data-load="assessment"><span class="glyphicon glyphicon-download"></span> Assessment</a></li>

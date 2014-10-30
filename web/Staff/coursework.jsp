@@ -3,7 +3,7 @@
     Created on : Oct 30, 2014, 2:42:28 AM
     Author     : Ramkumar
 --%>
-
+<div class="well" style="margin-left: 18px;">
 <ul class="nav nav-tabs" style="margin-bottom: 15px;">
     <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
     <li><a href="#profile" data-toggle="tab">Profile</a></li>
@@ -32,4 +32,5 @@
     <div class="tab-pane fade" id="dropdown2">
         <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
     </div>
+</div>
 </div>

@@ -4,7 +4,7 @@
     Author     : Ramkumar
 --%>
 
-<form class="form-horizontal">
+<form class="form-horizontal well" style="margin-left: 18px;">
     <fieldset>
         <legend>Legend</legend>
         <div class="form-group">
